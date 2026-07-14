@@ -59,11 +59,11 @@ def sha256_file(path: Path) -> str:
 
 
 def collect_hashes(root: Path, repository_root: Path) -> dict[str, str]:
-    hashes: dict[str, str] = {}
-    for path in sorted(root.rglob("*")):
-        if path.is_file():
-            hashes[path.relative_to(repository_root).as_posix()] = sha256_file(path)
-    return hashes
+    return {
+        path.relative_to(repository_root).as_posix(): sha256_file(path)
+        for path in sorted(root.rglob("*"))
+        if path.is_file()
+    }
 
 
 def validate_intake_audit(audit: Mapping[str, Any], expected_runs: int) -> None:
@@ -86,6 +86,39 @@ def validate_intake_audit(audit: Mapping[str, Any], expected_runs: int) -> None:
         raise RuntimeError("Intake audit is not promotable: " + ", ".join(failed))
 
 
+def verify_audited_manifest(
+    *,
+    stage: Any,
+    directory: Path,
+    manifest_name: str,
+    audited_files: Mapping[str, Any],
+) -> None:
+    """Verify manifest payloads and the manifest file's separate intake hash.
+
+    A manifest cannot include its own cryptographic hash without a recursive
+    fixed-point problem. The intake audit therefore records the manifest hash
+    separately from the payload hashes declared inside the manifest.
+    """
+
+    declared_payload_hashes = stage.verify_manifest(directory, manifest_name)
+    audited_payload_hashes = {
+        str(name): str(value)
+        for name, value in audited_files.items()
+        if str(name) != manifest_name
+    }
+    if dict(declared_payload_hashes) != audited_payload_hashes:
+        raise RuntimeError(
+            f"Manifest payload hashes changed after intake in {directory.name}"
+        )
+
+    expected_manifest_hash = str(audited_files.get(manifest_name, ""))
+    if not expected_manifest_hash:
+        raise RuntimeError(f"The intake audit does not hash {manifest_name}")
+    actual_manifest_hash = sha256_file(directory / manifest_name)
+    if actual_manifest_hash != expected_manifest_hash:
+        raise RuntimeError(f"{manifest_name} changed after intake in {directory.name}")
+
+
 def verify_staged_tree(staging_root: Path, audit: Mapping[str, Any], expected_runs: int) -> None:
     stage = load_module("public_stage_evidence", STAGING_TOOL_PATH)
     selected = staging_root / "selected_runs"
@@ -96,35 +129,41 @@ def verify_staged_tree(staging_root: Path, audit: Mapping[str, Any], expected_ru
     audited_runs = audit.get("runs", [])
     expected_ids = {str(item.get("public_run_id")) for item in audited_runs}
     actual_ids = {
-        path.name for path in selected.iterdir()
+        path.name
+        for path in selected.iterdir()
         if path.is_dir() and (path / "certificate.json").is_file()
     }
     if actual_ids != expected_ids or len(actual_ids) != expected_runs:
         raise RuntimeError("Staged run directories do not match the intake audit")
 
     for item in audited_runs:
-        run_id = str(item["public_run_id"])
-        run_dir = selected / run_id
-        verified = stage.verify_manifest(run_dir, "manifest.json")
         audited_files = item.get("files")
-        if not isinstance(audited_files, Mapping) or dict(verified) != dict(audited_files):
-            raise RuntimeError(f"Staged file hashes changed after intake for {run_id}")
+        if not isinstance(audited_files, Mapping):
+            raise RuntimeError("A staged run has no audited file map")
+        run_id = str(item["public_run_id"])
+        verify_audited_manifest(
+            stage=stage,
+            directory=selected / run_id,
+            manifest_name="manifest.json",
+            audited_files=audited_files,
+        )
 
     replication_record = audit.get("replication")
     if not isinstance(replication_record, Mapping):
         raise RuntimeError("Replication audit record is missing")
     replication_id = str(replication_record.get("public_replication_id", ""))
-    replication_dir = replication / replication_id
-    if not replication_id or not replication_dir.is_dir():
-        raise RuntimeError("Audited replication directory is missing")
-    verified_replication = stage.verify_manifest(
-        replication_dir, "replication_manifest.json"
-    )
     audited_replication_files = replication_record.get("files")
-    if not isinstance(audited_replication_files, Mapping):
-        raise RuntimeError("Replication file audit is missing")
-    if dict(verified_replication) != dict(audited_replication_files):
-        raise RuntimeError("Replication file hashes changed after intake")
+    if not replication_id or not isinstance(audited_replication_files, Mapping):
+        raise RuntimeError("Audited replication files are missing")
+    replication_dir = replication / replication_id
+    if not replication_dir.is_dir():
+        raise RuntimeError("Audited replication directory is missing")
+    verify_audited_manifest(
+        stage=stage,
+        directory=replication_dir,
+        manifest_name="replication_manifest.json",
+        audited_files=audited_replication_files,
+    )
 
     findings = stage.scan_tree(staging_root)
     if findings:
@@ -140,21 +179,20 @@ def build_release_manifest(
     repository_root: Path,
     evidence_root: Path,
 ) -> dict[str, Any]:
-    selected_root = evidence_root / "selected_runs"
-    replication_root = evidence_root / "replication"
-    release_files = collect_hashes(selected_root, repository_root)
-    release_files.update(collect_hashes(replication_root, repository_root))
-
-    runs = []
-    for item in audit["runs"]:
-        runs.append({
+    release_files = collect_hashes(evidence_root / "selected_runs", repository_root)
+    release_files.update(
+        collect_hashes(evidence_root / "replication", repository_root)
+    )
+    runs = [
+        {
             "public_run_id": item["public_run_id"],
             "backend": item["backend"],
             "job_id": item["job_id"],
             "classification": item["classification"],
             "raw_results_sha256": item["raw_results_sha256"],
-        })
-
+        }
+        for item in audit["runs"]
+    ]
     return {
         "schema": "QUANTUM_CLASSICAL_PUBLIC_EVIDENCE_RELEASE_MANIFEST_V1",
         "release_candidate": RELEASE_CANDIDATE,
@@ -218,22 +256,26 @@ def write_evidence_index(evidence_root: Path, release_manifest: Mapping[str, Any
         "",
     ]
     for run in release_manifest["runs"]:
-        lines.extend([
-            f"- `{run['public_run_id']}`",
-            f"  - backend: `{run['backend']}`",
-            f"  - IBM job identifier: `{run['job_id']}`",
-            f"  - classification: `{run['classification']}`",
-            f"  - raw-results SHA-256: `{run['raw_results_sha256']}`",
-        ])
-    lines.extend([
-        "",
-        "## Boundary",
-        "",
-        str(release_manifest["scientific_boundary"]),
-        "",
-        "The private provisional repository remains the authoritative archive for unselected development evidence.",
-        "This technical evidence release does not replace final legal/IP review before public visibility.",
-    ])
+        lines.extend(
+            [
+                f"- `{run['public_run_id']}`",
+                f"  - backend: `{run['backend']}`",
+                f"  - IBM job identifier: `{run['job_id']}`",
+                f"  - classification: `{run['classification']}`",
+                f"  - raw-results SHA-256: `{run['raw_results_sha256']}`",
+            ]
+        )
+    lines.extend(
+        [
+            "",
+            "## Boundary",
+            "",
+            str(release_manifest["scientific_boundary"]),
+            "",
+            "The private provisional repository remains the authoritative archive for unselected development evidence.",
+            "This technical evidence release does not replace final legal/IP review before public visibility.",
+        ]
+    )
     (evidence_root / "EVIDENCE_INDEX.md").write_text(
         "\n".join(lines) + "\n", encoding="utf-8"
     )
@@ -270,12 +312,14 @@ def promote(
     index_path = evidence_root / "EVIDENCE_INDEX.md"
 
     existing = [
-        path for path in (
+        path
+        for path in (
             selected_destination,
             replication_destination,
             manifest_path,
             index_path,
-        ) if path.exists()
+        )
+        if path.exists()
     ]
     if existing and not replace:
         raise RuntimeError(
@@ -311,7 +355,10 @@ def promote(
             raise RuntimeError("Promoted copy failed reevaluation: " + ", ".join(failed))
         findings = stage.scan_tree(temporary)
         if findings:
-            raise RuntimeError("Promoted copy failed content scan: " + json.dumps(findings))
+            raise RuntimeError(
+                "Promoted copy failed content scan: "
+                + json.dumps(findings, sort_keys=True)
+            )
 
         if replace:
             for path in (selected_destination, replication_destination):
@@ -394,9 +441,9 @@ def self_test() -> None:
         assert (evidence / "provenance" / "evidence_release_manifest.json").is_file()
         assert not (evidence / "intake_audit.json").exists()
     print(
-        "Self-test passed: explicit approvals, intake revalidation, exact promotion, "
-        "campaign reevaluation, public manifest generation, local-audit exclusion, "
-        "and separation of technical review from legal/IP review are enforced."
+        "Self-test passed: explicit approvals, manifest payload and self-hash verification, "
+        "intake revalidation, exact promotion, campaign reevaluation, public manifest generation, "
+        "local-audit exclusion, and separation of technical from legal/IP review are enforced."
     )
 
 
