@@ -82,5 +82,5 @@ Citation metadata will be finalized in [`CITATION.cff`](CITATION.cff) at the fir
 
 ## Author
 
-Monty Dabas, Independent Researcher  
+Parveen Dabas, Independent Researcher  
 ORCID: 0009-0005-6948-209X
