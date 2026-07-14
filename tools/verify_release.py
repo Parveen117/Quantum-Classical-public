@@ -21,6 +21,7 @@ SOURCE_FILES = (
     REPO_ROOT / "tools" / "stage_evidence_intake.py",
     REPO_ROOT / "tools" / "promote_evidence_release.py",
     REPO_ROOT / "tools" / "verify_tracked_evidence.py",
+    REPO_ROOT / "tools" / "generate_release_summary.py",
 )
 SCHEMA_DIR = REPO_ROOT / "schemas"
 TEXT_SUFFIXES = {".py", ".md", ".toml", ".cff", ".json", ".txt", ".yml", ".yaml"}
