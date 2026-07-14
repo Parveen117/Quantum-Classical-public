@@ -45,8 +45,6 @@
       "private_source_commit": null,
       "private_source_blob_sha": null,
       "public_destination_path": "tools/verify_release.py",
-      "public_git_blob_sha": "3a4c77f358e8e45ae8e4332eefa59b2f085cb643",
-      "public_sha256": "b80cebd47ea719754d670379ecca7b4903a3ef77e3f1ef3b56ebd97ec7012337",
       "modifications": [
         "new public-release verifier",
         "compiles public Python sources",
@@ -55,7 +53,7 @@
         "checks Parveen public attribution",
         "runs executable self-tests"
       ],
-      "review_status": "LOCALLY_TESTED"
+      "review_status": "CI_TESTED"
     },
     {
       "private_source_path": null,
@@ -70,9 +68,37 @@
         "regenerates the replication certificate after each completed job",
         "stops submitting after the target run count is reached"
       ],
-      "review_status": "OFFLINE_SELF_TESTED_AWAITING_CI"
+      "review_status": "CI_TESTED_AND_HARDWARE_CAMPAIGN_COMPLETED"
+    },
+    {
+      "private_source_path": null,
+      "private_source_commit": null,
+      "private_source_blob_sha": null,
+      "public_destination_path": "tools/stage_evidence_intake.py",
+      "modifications": [
+        "re-verifies the three-run campaign",
+        "verifies every evidence manifest and SHA-256 hash",
+        "copies only approved evidence file categories into git-ignored staging",
+        "scans for credentials, account fields, personal information, and local paths",
+        "keeps the local intake audit out of tracked public evidence"
+      ],
+      "review_status": "CI_TESTED_AND_LOCAL_INTAKE_PASSED"
+    },
+    {
+      "private_source_path": null,
+      "private_source_commit": null,
+      "private_source_blob_sha": null,
+      "public_destination_path": "tools/promote_evidence_release.py",
+      "modifications": [
+        "requires explicit job-identifier and selected-file-boundary approvals",
+        "revalidates staged evidence and reevaluates the copied campaign",
+        "promotes only approved evidence files into tracked paths",
+        "generates a public evidence release manifest and evidence index",
+        "excludes the local intake audit and preserves final legal/IP review as an open gate"
+      ],
+      "review_status": "AWAITING_CI_AND_LOCAL_PROMOTION"
     }
   ],
-  "evidence_status": "NO_HARDWARE_EVIDENCE_TRANSPORTED_YET",
-  "scientific_boundary": "This transport manifest records public-release code provenance. It is not a hardware result or physical validation certificate."
+  "evidence_status": "TRIPLE_CROSS_BACKEND_REPLICATION_PASSED_AND_STAGING_AUDIT_CLEAN_AWAITING_TRACKED_PROMOTION",
+  "scientific_boundary": "This transport manifest records public-release code and evidence-handling provenance. It is not physical device validation, a material mechanism certificate, a quantum-advantage result, or a universal-law proof."
 }
