@@ -1,24 +1,10 @@
-# Public Evidence Intake
+# Public Evidence
 
-No hardware evidence has been approved for the tracked public branch yet.
+The private campaign has passed the declared three-run cross-backend gate, and the local intake staging audit has passed manifest, hash, duplicate, and sensitive-content checks.
 
-The private campaign has now reported a passing three-backend `CROSS_BACKEND_REPLICATION` result. It is eligible for controlled local intake and publication audit, but not yet for commit or public visibility. Use [`docs/EVIDENCE_INTAKE.md`](../docs/EVIDENCE_INTAKE.md).
+No hardware evidence is tracked on this branch until the controlled promotion tool completes locally and the resulting Git diff is reviewed.
 
-## Local staging boundary
-
-The intake tool writes only to the git-ignored directory:
-
-```text
-intake_staging/
-  intake_audit.json
-  intake_audit.md
-  selected_runs/
-  replication/
-```
-
-Do not force-add this directory. It exists so hashes, identifiers, privacy, provenance, and patent boundaries can be reviewed before evidence enters Git history.
-
-## Required selected-run bundle
+## Approved selected-run bundle
 
 ```text
 selected_runs/<PUBLIC_RUN_ID>/
@@ -28,7 +14,7 @@ selected_runs/<PUBLIC_RUN_ID>/
   manifest.json
 ```
 
-## Required replication bundle
+## Approved replication bundle
 
 ```text
 replication/<PUBLIC_REPLICATION_ID>/
@@ -37,19 +23,26 @@ replication/<PUBLIC_REPLICATION_ID>/
   replication_manifest.json
 ```
 
-## Intake gates
+## Publication decisions
 
-Every bundle must pass:
+- IBM job identifiers are approved for public provenance because they distinguish independent executions and are not authentication credentials.
+- The local intake audit is excluded from Git history because it can contain a workstation path.
+- The selected technical file boundary excludes credentials, account identifiers, local paths, device implementation details, claim strategy, examiner material, and unrelated experiments.
+- Final legal/IP review remains required before changing repository visibility.
 
-- SHA-256 manifest verification;
-- source-commit and source-path provenance recording;
-- distinct execution and raw-result checks;
-- fixed benchmark classification and metric gates;
-- credential, local-path, personal-information, and unpublished-IP scans;
-- review of backend and job identifiers for publication necessity;
-- scientific-boundary review;
-- offline regeneration of the replication result.
+## Promotion and verification
 
-The private repository remains the authoritative archive for unmodified raw evidence. The public repository contains only selected, provenance-linked evidence necessary to audit the released claim.
+Use [`docs/EVIDENCE_INTAKE.md`](../docs/EVIDENCE_INTAKE.md) and `tools/promote_evidence_release.py`.
 
-Failed or excluded runs must not be silently erased from the research history. The release notes should report aggregate inclusion and exclusion categories without exposing private material.
+Promotion must reverify:
+
+- the `CROSS_BACKEND_REPLICATION` classification;
+- three passing runs on three distinct backends;
+- manifest-declared SHA-256 hashes;
+- distinct job identifiers and raw-result hashes;
+- cross-run stability;
+- exact agreement with the local intake audit;
+- sensitive-content scanning before and after copying;
+- exclusion of the local intake audit from tracked files.
+
+The private repository remains the authoritative archive for unmodified and unselected research evidence. Failed or excluded runs must not be silently erased from the research history.
