@@ -1,6 +1,6 @@
 # Public Release Checklist
 
-The repository must remain private until every **required** gate below is closed. A dramatic README is not a substitute for reproducibility, although the internet continues to conduct that experiment daily.
+The repository must remain private until every **required pre-public** gate below is closed. A dramatic README is not a substitute for reproducibility, although the internet continues to conduct that experiment daily.
 
 ## 1. Scope and claims
 
@@ -56,9 +56,10 @@ The repository must remain private until every **required** gate below is closed
 - [x] Patent notice exists.
 - [x] Controlled public-inspection licence exists.
 - [x] Public/private release boundary exists.
-- [ ] Final release contents are checked against active patent filings and unpublished claim strategy.
+- [x] Final release contents are checked against active patent filings and unpublished claim strategy by the repository owner; decision recorded in issue #3.
 - [x] Current public branch contains no fabrication, cryogenic-control, examiner-response, or unpublished laboratory packet.
 - [x] Technical selected-file boundary limits evidence to results, certificates, summaries, and manifests.
+- [x] The public licence identifies Monty Dabas only and excludes the private legal name.
 
 ## 7. Repository hygiene
 
@@ -69,14 +70,19 @@ The repository must remain private until every **required** gate below is closed
 - [x] Personal-information and sensitive-field scan is clean for staged selected evidence.
 - [x] Large-file and duplicate-file audit is clean after tracked evidence promotion.
 - [x] Repository-local Markdown links and heading anchors pass the offline checker in CI.
-- [ ] Repository description and topics match the bounded claim.
+- [x] Proposed repository description and topics match the bounded claim and are approved in issue #3.
+- [ ] Apply the approved description and topics in GitHub repository settings.
 
 ## 8. Release
 
-- [ ] Freeze release candidate commit.
+- [x] Freeze the approved release-candidate content on the PR head.
 - [x] Create release notes summarizing included evidence and exclusions.
-- [ ] Tag `v0.1.0-rc1` only after all required gates pass.
-- [ ] Re-run offline verification from the tagged commit.
-- [ ] Record the tag, commit SHA, and evidence-manifest hashes in the release notes.
-- [ ] Complete final legal/IP review.
-- [ ] Change repository visibility only after the final inspection.
+- [x] Complete final human legal/IP review.
+- [ ] Mark PR #1 ready and merge into `main` while the repository remains private.
+- [ ] Re-run verification and CI on the exact merged `main` commit.
+- [ ] Perform the final repository visibility inspection.
+- [ ] Change the repository to public.
+- [ ] Enable `Parveen117/Quantum-Classical-public` in Zenodo before publishing the GitHub release.
+- [ ] Create and publish the `v0.1.0-rc1` GitHub prerelease from the exact verified `main` commit.
+- [ ] Verify the Zenodo archive, creator, ORCID, version, files, and DOI.
+- [ ] Record the final tag, commit SHA, evidence-manifest hash, and Zenodo DOI in a post-release metadata update.
