@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Environments
+.venv/
+venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Credentials and local configuration
+.env
+.env.*
+!.env.example
+qiskit-ibm.json
+qiskitrc
+*.pem
+*.key
+*token*
+*credential*
+*secret*
+
+# Local execution configuration
+local_config.json
+backend_config.json
+private_instance.json
+
+# Generated evidence and runtime output
+multi_ledger_operator_memory_v1/runs/
+multi_ledger_operator_memory_v1/replication/
+device_evidence_exports/
+outputs/
+logs/
+*.log
+
+# Packaging
+build/
+dist/
+*.egg-info/
