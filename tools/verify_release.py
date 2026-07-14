@@ -17,6 +17,7 @@ SOURCE_FILES = (
     REPO_ROOT / "src" / "run_multi_ledger_operator_memory_test.py",
     REPO_ROOT / "src" / "evaluate_multi_ledger_replication.py",
     REPO_ROOT / "src" / "run_multi_ledger_replication_job.py",
+    REPO_ROOT / "src" / "run_replication_campaign_job.py",
 )
 SCHEMA_DIR = REPO_ROOT / "schemas"
 TEXT_SUFFIXES = {".py", ".md", ".toml", ".cff", ".json", ".txt", ".yml", ".yaml"}
