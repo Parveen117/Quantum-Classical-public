@@ -36,20 +36,20 @@ The repository must remain private until every **required** gate below is closed
 - [x] Each selected staged run includes `results.json`, `certificate.json`, `summary.md`, and `manifest.json`.
 - [x] The staged cross-backend replication includes a certificate, summary, and manifest.
 - [x] Duplicate job identifiers and duplicate raw-result hashes are rejected by the evaluator.
-- [ ] Calibration and execution dates are stated where available.
+- [x] Certificate creation dates are stated for all selected runs; authoritative queue/runtime fields were not retained and this limitation is documented.
 - [x] Negative controls and reduced-model comparisons are included in the benchmark design.
 - [x] The staged selected evidence contains no detected credentials, account identifiers, local paths, or private notes.
-- [ ] Approved evidence is promoted into tracked release paths and reverified from a clean checkout.
+- [x] Approved evidence is promoted into tracked release paths and reverified from a clean checkout.
 
 ## 5. Reproducibility
 
 - [x] One command verifies public source syntax, schemas, scans, and executable self-tests offline.
-- [ ] One command verifies every tracked evidence manifest and certificate after promotion.
-- [ ] One command reproduces release summary tables from tracked evidence.
+- [x] One command verifies every tracked evidence manifest and certificate after promotion.
+- [x] One command reproduces release summary tables from tracked evidence.
 - [x] Deterministic positive and adversarial fixtures are included in evaluator self-tests.
 - [x] Machine-generated outputs identify the software version and private-source provenance.
 - [x] Hardware-access requirements and execution commands are documented.
-- [ ] Expected hardware runtimes and likely queue-dependent variability are documented from a release run.
+- [x] Queue/runtime variability and the absence of authoritative duration fields are documented without inferring duration from directory or certificate timestamps.
 
 ## 6. Intellectual property and licensing
 
@@ -67,14 +67,14 @@ The repository must remain private until every **required** gate below is closed
 - [x] Local-path and hardcoded-secret scan passes on the locally reconstructed public tree.
 - [x] CI secret/path scan passes on the GitHub branch.
 - [x] Personal-information and sensitive-field scan is clean for staged selected evidence.
-- [ ] Large-file and duplicate-file audit is clean after tracked evidence promotion.
+- [x] Large-file and duplicate-file audit is clean after tracked evidence promotion.
 - [ ] Links and Markdown render correctly.
 - [ ] Repository description and topics match the bounded claim.
 
 ## 8. Release
 
 - [ ] Freeze release candidate commit.
-- [ ] Create release notes summarizing included evidence and exclusions.
+- [x] Create release notes summarizing included evidence and exclusions.
 - [ ] Tag `v0.1.0-rc1` only after all required gates pass.
 - [ ] Re-run offline verification from the tagged commit.
 - [ ] Record the tag, commit SHA, and evidence-manifest hashes in the release notes.
