@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/Parveen117/Quantum-Classical/schemas/replication_certificate.schema.json",
+  "$id": "https://github.com/Parveen117/Quantum-Classical-public/schemas/replication_certificate.schema.json",
   "title": "Multi-Ledger Operator-Memory Replication Certificate",
   "type": "object",
   "required": ["schema", "benchmark_version", "created_at_utc", "classification", "run_count", "passing_run_count", "backend_count", "duplicate_job_ids", "duplicate_result_hashes", "cross_run_stability", "runs", "scientific_boundary"],
