@@ -8,7 +8,9 @@ This document prepares the first bounded release candidate. The repository remai
 - Candidate name: `0.1.0-rc1`
 - Publication author: Monty Dabas, Independent Researcher
 - ORCID: `0009-0005-6948-209X`
-- Public visibility: blocked pending final legal/IP review and final release inspection
+- Human legal/IP review: approved on July 14, 2026, in issue #3
+- Reviewed content commit: `2bf9f84e4bd5c2082a1fd8367c811a899bec1ebf`
+- Public visibility: pending private merge, exact merged-commit verification, repository-metadata application, and final visibility inspection
 - Authoritative private archive: `Parveen117/quantum-classical-provisional`
 
 ## Included technical scope
@@ -135,14 +137,22 @@ The candidate excludes:
 
 Failed or excluded experiments remain part of the private research history and are not silently reclassified as passing evidence.
 
-## Remaining gates before tagging or public visibility
+## Human review decision
 
-- final comparison against active patent filings and unpublished claim strategy by the appropriate human reviewer or counsel;
-- repository description and topic review against the bounded claim;
-- freeze of the final release-candidate commit;
-- creation of the `v0.1.0-rc1` tag only after all required gates pass;
-- offline verification from the exact tagged commit;
-- recording of the final tag, commit SHA, and evidence-manifest hash in these notes;
-- final repository visibility review.
+The repository owner completed the final human legal/IP comparison and reported no issue in the selected public package. Issue #3 records the approval, the reviewed commit, the public-name privacy rule, the approved claim boundary, and the approved repository description/topics.
 
-Until those gates are closed, the pull request remains draft and the repository remains private.
+This technical release record is not a third-party legal opinion and does not grant any patent or commercial right.
+
+## Remaining release operations
+
+- freeze and merge the approved release candidate into `main` while the repository remains private;
+- verify the exact merged `main` commit and its CI results;
+- apply the approved repository description and topics from `docs/REPOSITORY_METADATA.md`;
+- perform the final repository visibility inspection;
+- change the repository to public only after that inspection;
+- enable the public repository in Zenodo before publishing the GitHub release;
+- create and publish the `v0.1.0-rc1` GitHub prerelease from the exact verified `main` commit;
+- verify the generated Zenodo record, creator, ORCID, version, archive, and DOI;
+- record the final tag, commit SHA, evidence-manifest hash, and Zenodo DOI in a post-release metadata update.
+
+Until the private merge and exact merged-commit verification pass, the pull request remains draft and the repository remains private.
