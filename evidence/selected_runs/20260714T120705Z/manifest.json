@@ -1,0 +1,10 @@
+{
+  "backend": "ibm_marrakesh",
+  "files": {
+    "certificate.json": "951050f943c2349c871e8ed0d87075417b0a1b64320644ace844d7dde94c246c",
+    "results.json": "9038b059703c5d460369c805ff7d108677afb82129e6761074e0260bd96e17e7",
+    "summary.md": "3862ad512d7b9a0481f35b77f08a5bbdc8224b0e9a8d3def379ae10f3463d302"
+  },
+  "job_id": "d9b2ct6g26ic73dfd8s0",
+  "schema": "MULTI_LEDGER_OPERATOR_MEMORY_MANIFEST_V1"
+}
