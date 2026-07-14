@@ -2,7 +2,7 @@
   "schema": "QUANTUM_CLASSICAL_PUBLIC_TRANSPORT_MANIFEST_V1",
   "created_on": "2026-07-14",
   "private_source_repository": "Parveen117/quantum-classical-provisional",
-  "public_destination_repository": "Parveen117/Quantum-Classical",
+  "public_destination_repository": "Parveen117/Quantum-Classical-public",
   "public_branch": "agent/public-release-foundation",
   "files": [
     {
@@ -53,9 +53,24 @@
         "checks schema structure",
         "scans for local paths and hardcoded secrets",
         "checks Parveen public attribution",
-        "runs both executable self-tests"
+        "runs executable self-tests"
       ],
       "review_status": "LOCALLY_TESTED"
+    },
+    {
+      "private_source_path": null,
+      "private_source_commit": null,
+      "private_source_blob_sha": null,
+      "public_destination_path": "src/run_replication_campaign_job.py",
+      "modifications": [
+        "new one-job-at-a-time campaign runner",
+        "accepts an external private evidence root",
+        "excludes previously used backends",
+        "submits exactly one IBM job per invocation",
+        "regenerates the replication certificate after each completed job",
+        "stops submitting after the target run count is reached"
+      ],
+      "review_status": "OFFLINE_SELF_TESTED_AWAITING_CI"
     }
   ],
   "evidence_status": "NO_HARDWARE_EVIDENCE_TRANSPORTED_YET",
