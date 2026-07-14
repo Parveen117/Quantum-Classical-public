@@ -30,21 +30,22 @@ The repository must remain private until every **required** gate below is closed
 
 ## 4. Evidence
 
-- [ ] At least two selected passing hardware runs from distinct backends are reviewed.
-- [ ] Run identifiers are assessed for privacy and publication necessity.
-- [ ] Raw result files are immutable and SHA-256 hashed.
-- [ ] Each selected run includes `results.json`, `certificate.json`, `summary.md`, and `manifest.json`.
-- [ ] Cross-backend replication includes a certificate, summary, and manifest.
+- [x] Three selected passing hardware runs from distinct backends are reviewed in local intake staging.
+- [x] Run identifiers are assessed for privacy and approved for public provenance.
+- [x] Raw result files are immutable and SHA-256 hashed in the staged intake.
+- [x] Each selected staged run includes `results.json`, `certificate.json`, `summary.md`, and `manifest.json`.
+- [x] The staged cross-backend replication includes a certificate, summary, and manifest.
 - [x] Duplicate job identifiers and duplicate raw-result hashes are rejected by the evaluator.
 - [ ] Calibration and execution dates are stated where available.
 - [x] Negative controls and reduced-model comparisons are included in the benchmark design.
-- [ ] No selected evidence file contains credentials, account identifiers, local paths, or private notes.
+- [x] The staged selected evidence contains no detected credentials, account identifiers, local paths, or private notes.
+- [ ] Approved evidence is promoted into tracked release paths and reverified from a clean checkout.
 
 ## 5. Reproducibility
 
 - [x] One command verifies public source syntax, schemas, scans, and executable self-tests offline.
-- [ ] One command verifies every selected evidence manifest and certificate after evidence intake.
-- [ ] One command reproduces release summary tables from selected evidence.
+- [ ] One command verifies every tracked evidence manifest and certificate after promotion.
+- [ ] One command reproduces release summary tables from tracked evidence.
 - [x] Deterministic positive and adversarial fixtures are included in evaluator self-tests.
 - [x] Machine-generated outputs identify the software version and private-source provenance.
 - [x] Hardware-access requirements and execution commands are documented.
@@ -57,6 +58,7 @@ The repository must remain private until every **required** gate below is closed
 - [x] Public/private release boundary exists.
 - [ ] Final release contents are checked against active patent filings and unpublished claim strategy.
 - [x] Current public branch contains no fabrication, cryogenic-control, examiner-response, or unpublished laboratory packet.
+- [x] Technical selected-file boundary limits evidence to results, certificates, summaries, and manifests.
 
 ## 7. Repository hygiene
 
@@ -64,8 +66,8 @@ The repository must remain private until every **required** gate below is closed
 - [x] `.gitignore` covers credentials, environments, notebooks, caches, generated runs, and local configuration.
 - [x] Local-path and hardcoded-secret scan passes on the locally reconstructed public tree.
 - [x] CI secret/path scan passes on the GitHub branch.
-- [ ] Personal-information scan is clean for selected evidence.
-- [ ] Large-file and duplicate-file audit is clean after evidence intake.
+- [x] Personal-information and sensitive-field scan is clean for staged selected evidence.
+- [ ] Large-file and duplicate-file audit is clean after tracked evidence promotion.
 - [ ] Links and Markdown render correctly.
 - [ ] Repository description and topics match the bounded claim.
 
@@ -76,4 +78,5 @@ The repository must remain private until every **required** gate below is closed
 - [ ] Tag `v0.1.0-rc1` only after all required gates pass.
 - [ ] Re-run offline verification from the tagged commit.
 - [ ] Record the tag, commit SHA, and evidence-manifest hashes in the release notes.
+- [ ] Complete final legal/IP review.
 - [ ] Change repository visibility only after the final inspection.
