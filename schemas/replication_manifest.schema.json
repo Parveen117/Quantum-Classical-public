@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/Parveen117/Quantum-Classical/schemas/replication_manifest.schema.json",
+  "$id": "https://github.com/Parveen117/Quantum-Classical-public/schemas/replication_manifest.schema.json",
   "title": "Multi-Ledger Operator-Memory Replication Manifest",
   "type": "object",
   "additionalProperties": false,
