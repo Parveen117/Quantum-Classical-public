@@ -18,9 +18,14 @@ SOURCE_FILES = (
     REPO_ROOT / "src" / "evaluate_multi_ledger_replication.py",
     REPO_ROOT / "src" / "run_multi_ledger_replication_job.py",
     REPO_ROOT / "src" / "run_replication_campaign_job.py",
+    REPO_ROOT / "tools" / "stage_evidence_intake.py",
 )
 SCHEMA_DIR = REPO_ROOT / "schemas"
 TEXT_SUFFIXES = {".py", ".md", ".toml", ".cff", ".json", ".txt", ".yml", ".yaml"}
+SCAN_EXCLUDED_FILES = {
+    Path(__file__).resolve(),
+    (REPO_ROOT / "tools" / "stage_evidence_intake.py").resolve(),
+}
 FORBIDDEN_LITERAL_PATTERNS = {
     "local Windows user path": re.compile(r"[A-Za-z]:\\Users\\", re.IGNORECASE),
     "private development folder": re.compile(r"PROVISNAL RELATED", re.IGNORECASE),
@@ -40,11 +45,14 @@ def run(command: Sequence[str]) -> None:
 
 
 def iter_text_files() -> Iterable[Path]:
-    excluded = {".git", ".venv", "venv", "__pycache__", ".pytest_cache", "generated"}
+    excluded = {
+        ".git", ".venv", "venv", "__pycache__", ".pytest_cache",
+        "generated", "intake_staging",
+    }
     for path in REPO_ROOT.rglob("*"):
         if not path.is_file() or path.suffix.lower() not in TEXT_SUFFIXES:
             continue
-        if path.resolve() == Path(__file__).resolve():
+        if path.resolve() in SCAN_EXCLUDED_FILES:
             continue
         if any(part in excluded for part in path.parts):
             continue
