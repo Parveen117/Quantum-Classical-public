@@ -37,6 +37,10 @@ FORBIDDEN_LITERAL_PATTERNS = {
     "hardcoded IBM token": re.compile(r"QISKIT_IBM_TOKEN\s*=\s*['\"][^<\s][^'\"]+['\"]", re.IGNORECASE),
     "hardcoded API key": re.compile(r"(?:api[_-]?key|token|secret)\s*=\s*['\"][A-Za-z0-9_\-]{20,}['\"]", re.IGNORECASE),
 }
+INCORRECT_PUBLICATION_IDENTITIES = (
+    "Parveen Dabas",
+    "Kajal Dabas",
+)
 
 
 def run(command: Sequence[str]) -> None:
@@ -90,15 +94,53 @@ def scan_forbidden_content() -> None:
 
 
 def verify_attribution() -> None:
-    required_files = (REPO_ROOT / "README.md", REPO_ROOT / "LICENSE", REPO_ROOT / "CITATION.cff")
-    for path in required_files:
+    full_name_files = (
+        REPO_ROOT / "README.md",
+        REPO_ROOT / "LICENSE",
+        REPO_ROOT / "pyproject.toml",
+        REPO_ROOT / "docs" / "RELEASE_NOTES_RC1.md",
+    )
+    for path in full_name_files:
         if not path.is_file():
-            raise RuntimeError(f"Required release file is missing: {path.name}")
+            raise RuntimeError(f"Required attribution file is missing: {path.relative_to(REPO_ROOT)}")
         text = path.read_text(encoding="utf-8")
-        if "Parveen" not in text:
-            raise RuntimeError(f"Public attribution is missing from {path.name}")
-        if "Monty Dabas" in text:
-            raise RuntimeError(f"Incorrect public attribution remains in {path.name}")
+        if "Monty Dabas" not in text:
+            raise RuntimeError(
+                f"Monty Dabas publication attribution is missing from {path.relative_to(REPO_ROOT)}"
+            )
+
+    citation_path = REPO_ROOT / "CITATION.cff"
+    if not citation_path.is_file():
+        raise RuntimeError("Required release file is missing: CITATION.cff")
+    citation = citation_path.read_text(encoding="utf-8")
+    required_citation_fields = (
+        'family-names: "Dabas"',
+        'given-names: "Monty"',
+        'orcid: "https://orcid.org/0009-0005-6948-209X"',
+        'affiliation: "Independent Researcher"',
+    )
+    for field in required_citation_fields:
+        if field not in citation:
+            raise RuntimeError(f"CITATION.cff is missing required publication field: {field}")
+
+    findings: list[str] = []
+    wrong_cff_given_name = re.compile(
+        r"given-names\s*:\s*['\"](?:Parveen|Kajal)['\"]",
+        re.IGNORECASE,
+    )
+    for path in iter_text_files():
+        text = path.read_text(encoding="utf-8", errors="replace")
+        for identity in INCORRECT_PUBLICATION_IDENTITIES:
+            if identity.lower() in text.lower():
+                findings.append(
+                    f"{path.relative_to(REPO_ROOT)}: incorrect publication identity {identity!r}"
+                )
+        if wrong_cff_given_name.search(text):
+            findings.append(
+                f"{path.relative_to(REPO_ROOT)}: incorrect CFF publication given-name"
+            )
+    if findings:
+        raise RuntimeError("Incorrect publication attribution detected:\n" + "\n".join(findings))
 
 
 def main(argv: Sequence[str] | None = None) -> int:
@@ -119,7 +161,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     print("PASS: local-path and hardcoded-secret scan")
 
     verify_attribution()
-    print("PASS: public attribution")
+    print("PASS: Monty Dabas publication attribution")
 
     run([sys.executable, str(MARKDOWN_CHECKER), "--root", str(REPO_ROOT)])
     print("PASS: Markdown local links and anchors")
