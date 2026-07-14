@@ -25,23 +25,26 @@ The initial release candidate is the **Multi-Ledger Operator-Memory Benchmark v1
 - self-tests that do not require IBM credentials;
 - selected hardware evidence only after privacy, provenance, patent, and claim-scope review.
 
-## Current execution step
+## Current validation state
 
-The current open scientific gate is a three-run independent IBM campaign. Raw evidence remains in the private development repository while the sanitised release-candidate code submits one job at a time on previously unused backends.
-
-Use [`docs/JUPYTER_TRIPLE_REPLICATION.md`](docs/JUPYTER_TRIPLE_REPLICATION.md) for the exact notebook cells. The required final certificate is:
+The private campaign has passed the declared three-backend release gate:
 
 ```text
 classification = CROSS_BACKEND_REPLICATION
-run_count >= 3
-passing_run_count >= 3
-backend_count >= 3
+run_count = 3
+passing_run_count = 3
+backend_count = 3
+backends = ibm_fez, ibm_kingston, ibm_marrakesh
 duplicate_job_ids = []
 duplicate_result_hashes = []
 cross_run_stability.pass = true
 ```
 
-Environment and authentication boundaries are documented in [`docs/ENVIRONMENT.md`](docs/ENVIRONMENT.md).
+All six declared per-run gates passed on every backend. Controlled intake also passed manifest verification, exact-copy hash checking, duplicate rejection, and sensitive-content scanning.
+
+The current phase is local promotion from ignored intake staging into tracked evidence paths. Use [`docs/EVIDENCE_INTAKE.md`](docs/EVIDENCE_INTAKE.md). The repository remains private and the PR remains draft.
+
+IBM job identifiers are approved for public provenance because they distinguish independent executions and are not authentication credentials. Final legal/IP review remains required before public visibility.
 
 ## Scientific levels
 
@@ -59,7 +62,7 @@ A computational certificate or hardware run is evidence relative to its circuit,
 
 The strongest intended first-release statement is:
 
-> Under the declared circuit, controls, metrics, and thresholds, selected IBM Quantum hardware runs can be evaluated for a decomposable operator-order memory representation with selective ledger erasure, causal projection, reduced-model comparison, and cross-run stability.
+> Under the declared circuit, controls, metrics, and thresholds, selected IBM Quantum hardware runs support a reproducible cross-backend quantum representation of decomposable operator-order memory with selective ledger erasure, causal projection, reduced-model comparison, and cross-run stability.
 
 A passing result supports the declared **quantum representation**. It does not establish a transistor, material memory, thermodynamic entropy production, quantum computational advantage, or new physical law.
 
@@ -80,7 +83,8 @@ A passing result supports the declared **quantum representation**. It does not e
 │   ├── MULTI_LEDGER_OPERATOR_MEMORY_TEST.md
 │   ├── REPRODUCIBILITY_PLAN.md
 │   ├── ENVIRONMENT.md
-│   └── JUPYTER_TRIPLE_REPLICATION.md
+│   ├── JUPYTER_TRIPLE_REPLICATION.md
+│   └── EVIDENCE_INTAKE.md
 ├── src/
 ├── tools/
 ├── schemas/
@@ -94,7 +98,7 @@ A passing result supports the declared **quantum representation**. It does not e
 
 Files are transported from the private development repository only after review. The public repository must not contain credentials, local filesystem paths, unpublished patent drafting, device fabrication details, private laboratory mappings, unrelated experiments, unverified outputs, or claims stronger than the included evidence.
 
-Every released evidence file must be referenced by a manifest, tied to a source commit, and accompanied by a stated scientific boundary.
+Every released evidence file must be referenced by a manifest, tied to a source record, and accompanied by a stated scientific boundary.
 
 ## Citation
 
