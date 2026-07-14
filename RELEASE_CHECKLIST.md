@@ -68,7 +68,7 @@ The repository must remain private until every **required** gate below is closed
 - [x] CI secret/path scan passes on the GitHub branch.
 - [x] Personal-information and sensitive-field scan is clean for staged selected evidence.
 - [x] Large-file and duplicate-file audit is clean after tracked evidence promotion.
-- [ ] Links and Markdown render correctly.
+- [x] Repository-local Markdown links and heading anchors pass the offline checker in CI.
 - [ ] Repository description and topics match the bounded claim.
 
 ## 8. Release
