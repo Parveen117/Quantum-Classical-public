@@ -6,6 +6,8 @@ This document prepares the first bounded release candidate. The repository remai
 
 - Evidence commit: `c9ea63775775f7e8aa2b5cb67bfa0da6b3902f89`
 - Candidate name: `0.1.0-rc1`
+- Publication author: Monty Dabas, Independent Researcher
+- ORCID: `0009-0005-6948-209X`
 - Public visibility: blocked pending final legal/IP review and final release inspection
 - Authoritative private archive: `Parveen117/quantum-classical-provisional`
 
@@ -136,7 +138,6 @@ Failed or excluded experiments remain part of the private research history and a
 ## Remaining gates before tagging or public visibility
 
 - final comparison against active patent filings and unpublished claim strategy by the appropriate human reviewer or counsel;
-- final internal-link and Markdown rendering audit;
 - repository description and topic review against the bounded claim;
 - freeze of the final release-candidate commit;
 - creation of the `v0.1.0-rc1` tag only after all required gates pass;
