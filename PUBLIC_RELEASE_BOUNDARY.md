@@ -2,7 +2,7 @@
 
 ## Public purpose
 
-`Parveen117/Quantum-Classical` is a bounded technical inspection, reproducibility, scholarly discussion, and citation package. It is not a mirror of the private development repository.
+`Parveen117/Quantum-Classical-public` is a bounded technical inspection, reproducibility, scholarly discussion, and citation package. It is not a mirror of the private development repository.
 
 The first public release is limited to a declared quantum benchmark, its controls, offline evaluation, selected evidence, manifests, certificates, and documentation necessary to understand and test the bounded claim.
 
@@ -20,13 +20,37 @@ The initial release may include:
 - hashes, manifests, certificates, provenance records, and exact source revisions;
 - limitations and falsification conditions.
 
+For the selected hardware evidence, IBM job identifiers may be included as public provenance because they distinguish independent executions and are not authentication credentials.
+
+## Approved evidence file boundary
+
+Only the following evidence files may be promoted into tracked release paths:
+
+```text
+selected_runs/<PUBLIC_RUN_ID>/
+  results.json
+  certificate.json
+  summary.md
+  manifest.json
+
+replication/<PUBLIC_REPLICATION_ID>/
+  replication_certificate.json
+  replication_summary.md
+  replication_manifest.json
+```
+
+The promotion workflow must reverify manifests, SHA-256 hashes, duplicate rejection, campaign classification, cross-run stability, and sensitive-content scans.
+
+The local intake audit is excluded from Git history because it can contain a workstation staging path.
+
 ## Excluded private layer
 
 The public repository deliberately excludes:
 
 - the complete `quantum-classical-provisional` development history;
-- credentials, saved IBM accounts, access tokens, account metadata, private instances, and local configuration;
+- credentials, saved IBM accounts, access tokens, account metadata, private instances, CRNs, email addresses, and local configuration;
 - local paths, usernames, private machine layouts, and device-repository destinations;
+- the local evidence-intake audit and its workstation path;
 - unpublished patent specifications, claims, claim charts, examiner strategy, continuation strategy, and filing records;
 - physical device architecture, transistor design, materials selection, fabrication details, cryogenic control electronics, and laboratory handover packets;
 - private calibration records and unpublished laboratory mappings;
@@ -38,7 +62,7 @@ The public repository deliberately excludes:
 
 A hardware observation means that a physical backend returned data for the declared circuit and protocol. It does not by itself identify a new physical mechanism.
 
-A passing benchmark may support a quantum representation of operator-order memory under the declared tests. It does not establish:
+A passing benchmark may support a reproducible cross-backend quantum representation of operator-order memory under the declared tests. It does not establish:
 
 - a fabricated transistor or electronic memory cell;
 - a material memory mechanism;
@@ -50,9 +74,15 @@ A passing benchmark may support a quantum representation of operator-order memor
 
 ## Transport rule
 
-No file is copied wholesale merely for completeness. Public material must be selected, sanitised, tested, provenance-linked, and listed in `TRANSFER_MANIFEST.md`.
+No file is copied wholesale merely for completeness. Public material must be selected, sanitised, tested, provenance-linked, and listed in `TRANSFER_MANIFEST.md` or the generated public evidence release manifest.
 
 If a public explanation can be reproduced without exposing a private implementation detail, the narrower explanation is preferred. Transparency requires enough information to evaluate the released claim, not publication of every adjacent invention.
+
+## Legal and visibility boundary
+
+Technical file review and automated scanning do not constitute a legal patent opinion. Final legal/IP review against active filings and unpublished claim strategy remains mandatory before changing repository visibility.
+
+The repository must remain private, the pull request must remain draft, and no release tag may be created until every required gate in `RELEASE_CHECKLIST.md` is closed.
 
 ## Version rule
 
