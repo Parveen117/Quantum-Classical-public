@@ -1,0 +1,123 @@
+#!/usr/bin/env python3
+"""Run offline public-release checks without IBM credentials."""
+
+from __future__ import annotations
+
+import argparse
+import json
+import py_compile
+import re
+import subprocess
+import sys
+from pathlib import Path
+from typing import Iterable, Sequence
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
+SOURCE_FILES = (
+    REPO_ROOT / "src" / "run_multi_ledger_operator_memory_test.py",
+    REPO_ROOT / "src" / "evaluate_multi_ledger_replication.py",
+)
+SCHEMA_DIR = REPO_ROOT / "schemas"
+TEXT_SUFFIXES = {".py", ".md", ".toml", ".cff", ".json", ".txt", ".yml", ".yaml"}
+FORBIDDEN_LITERAL_PATTERNS = {
+    "local Windows user path": re.compile(r"[A-Za-z]:\\Users\\", re.IGNORECASE),
+    "private development folder": re.compile(r"PROVISNAL RELATED", re.IGNORECASE),
+    "hardcoded IBM token": re.compile(r"QISKIT_IBM_TOKEN\s*=\s*['\"][^<\s][^'\"]+['\"]", re.IGNORECASE),
+    "hardcoded API key": re.compile(r"(?:api[_-]?key|token|secret)\s*=\s*['\"][A-Za-z0-9_\-]{20,}['\"]", re.IGNORECASE),
+}
+
+
+def run(command: Sequence[str]) -> None:
+    result = subprocess.run(command, cwd=REPO_ROOT, text=True, capture_output=True)
+    if result.stdout:
+        print(result.stdout, end="")
+    if result.stderr:
+        print(result.stderr, end="", file=sys.stderr)
+    if result.returncode != 0:
+        raise RuntimeError(f"Command failed ({result.returncode}): {' '.join(command)}")
+
+
+def iter_text_files() -> Iterable[Path]:
+    excluded = {".git", ".venv", "venv", "__pycache__", ".pytest_cache", "generated"}
+    for path in REPO_ROOT.rglob("*"):
+        if not path.is_file() or path.suffix.lower() not in TEXT_SUFFIXES:
+            continue
+        if path.resolve() == Path(__file__).resolve():
+            continue
+        if any(part in excluded for part in path.parts):
+            continue
+        yield path
+
+
+def validate_schemas() -> None:
+    if not SCHEMA_DIR.exists():
+        raise RuntimeError("schemas directory is missing")
+    schemas = sorted(SCHEMA_DIR.glob("*.schema.json"))
+    if len(schemas) < 4:
+        raise RuntimeError("Expected at least four public JSON schemas")
+    for schema in schemas:
+        data = json.loads(schema.read_text(encoding="utf-8"))
+        if data.get("$schema") != "https://json-schema.org/draft/2020-12/schema":
+            raise RuntimeError(f"{schema.name} does not declare JSON Schema 2020-12")
+        if not data.get("title") or data.get("type") != "object":
+            raise RuntimeError(f"{schema.name} is missing a title or object type")
+
+
+def scan_forbidden_content() -> None:
+    findings: list[str] = []
+    for path in iter_text_files():
+        text = path.read_text(encoding="utf-8", errors="replace")
+        for label, pattern in FORBIDDEN_LITERAL_PATTERNS.items():
+            if pattern.search(text):
+                findings.append(f"{path.relative_to(REPO_ROOT)}: {label}")
+    if findings:
+        raise RuntimeError("Forbidden public content detected:\n" + "\n".join(findings))
+
+
+def verify_attribution() -> None:
+    required_files = (REPO_ROOT / "README.md", REPO_ROOT / "LICENSE", REPO_ROOT / "CITATION.cff")
+    for path in required_files:
+        if not path.is_file():
+            raise RuntimeError(f"Required release file is missing: {path.name}")
+        text = path.read_text(encoding="utf-8")
+        if "Parveen" not in text:
+            raise RuntimeError(f"Public attribution is missing from {path.name}")
+        if "Monty Dabas" in text:
+            raise RuntimeError(f"Incorrect public attribution remains in {path.name}")
+
+
+def main(argv: Sequence[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--skip-self-tests", action="store_true")
+    args = parser.parse_args(argv)
+
+    for source in SOURCE_FILES:
+        if not source.is_file():
+            raise RuntimeError(f"Missing public source file: {source.relative_to(REPO_ROOT)}")
+        py_compile.compile(str(source), doraise=True)
+    print("PASS: Python syntax compilation")
+
+    validate_schemas()
+    print("PASS: JSON schema structure")
+
+    scan_forbidden_content()
+    print("PASS: local-path and hardcoded-secret scan")
+
+    verify_attribution()
+    print("PASS: public attribution")
+
+    if not args.skip_self_tests:
+        for source in SOURCE_FILES:
+            run([sys.executable, str(source), "--self-test"])
+        print("PASS: executable self-tests")
+
+    print("Public-release offline verification passed.")
+    return 0
+
+
+if __name__ == "__main__":
+    try:
+        raise SystemExit(main())
+    except Exception as exc:
+        print(f"ERROR: {exc}", file=sys.stderr)
+        raise SystemExit(1)
