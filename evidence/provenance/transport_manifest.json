@@ -1,0 +1,63 @@
+{
+  "schema": "QUANTUM_CLASSICAL_PUBLIC_TRANSPORT_MANIFEST_V1",
+  "created_at_utc": "2026-07-14T00:00:00Z",
+  "private_source_repository": "Parveen117/quantum-classical-provisional",
+  "public_destination_repository": "Parveen117/Quantum-Classical",
+  "public_branch": "agent/public-release-foundation",
+  "files": [
+    {
+      "private_source_path": "run_multi_ledger_operator_memory_test.py",
+      "private_source_commit": "fa873e508600f98516642e4a8800829c8497f2b4",
+      "private_source_blob_sha": "00b258eba3bbb0d951ed6ad0a83f7e3b8ec47bc7",
+      "public_destination_path": "src/run_multi_ledger_operator_memory_test.py",
+      "public_git_blob_sha": "06707067b037754617d7cf153fddcf7e1658f6cb",
+      "public_sha256": "9bddb8f76c0c9758442429767cb852ae349f1b654793537075f65b67f3adcc38",
+      "modifications": [
+        "removed local Windows and Jupyter paths",
+        "moved Qiskit imports behind the hardware execution boundary",
+        "added pure offline self-tests",
+        "added CLI arguments and environment-variable fallbacks",
+        "added portable output paths and software-version provenance",
+        "preserved benchmark modes, operator construction, controls, metrics, certificates, and manifests"
+      ],
+      "review_status": "SANITISED_AND_OFFLINE_TESTED"
+    },
+    {
+      "private_source_path": "evaluate_multi_ledger_replication.py",
+      "private_source_commit": "a1cc5645c9bb29223ba9f2981176b322982b9903",
+      "private_source_blob_sha": "04da6998c465a27583043d14cde481bbb3bdc497",
+      "public_destination_path": "src/evaluate_multi_ledger_replication.py",
+      "public_git_blob_sha": "2042ed3cb9c68e822d9f3bdce9f169d8dd15ba74",
+      "public_sha256": "dae7e181bcc137a7b66ba1ee3d0fa548d36c436e58f790520939dab332bc7383",
+      "modifications": [
+        "removed local Windows and Jupyter paths",
+        "made output paths repository-relative",
+        "removed absolute run directories from public certificates",
+        "added manifest path-traversal rejection",
+        "added direct raw-result hash verification",
+        "added corrupt-hash and unsafe-path adversarial self-tests",
+        "preserved fixed gates, duplicate rejection, stability evaluation, classifications, and hashed outputs"
+      ],
+      "review_status": "SANITISED_AND_OFFLINE_TESTED"
+    },
+    {
+      "private_source_path": null,
+      "private_source_commit": null,
+      "private_source_blob_sha": null,
+      "public_destination_path": "tools/verify_release.py",
+      "public_git_blob_sha": "3a4c77f358e8e45ae8e4332eefa59b2f085cb643",
+      "public_sha256": "b80cebd47ea719754d670379ecca7b4903a3ef77e3f1ef3b56ebd97ec7012337",
+      "modifications": [
+        "new public-release verifier",
+        "compiles public Python sources",
+        "checks schema structure",
+        "scans for local paths and hardcoded secrets",
+        "checks Parveen public attribution",
+        "runs both executable self-tests"
+      ],
+      "review_status": "LOCALLY_TESTED"
+    }
+  ],
+  "evidence_status": "NO_HARDWARE_EVIDENCE_TRANSPORTED_YET",
+  "scientific_boundary": "This transport manifest records public-release code provenance. It is not a hardware result or physical validation certificate."
+}
