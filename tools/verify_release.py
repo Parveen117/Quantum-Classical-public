@@ -13,6 +13,7 @@ from pathlib import Path
 from typing import Iterable, Sequence
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+MARKDOWN_CHECKER = REPO_ROOT / "tools" / "check_markdown_links.py"
 SOURCE_FILES = (
     REPO_ROOT / "src" / "run_multi_ledger_operator_memory_test.py",
     REPO_ROOT / "src" / "evaluate_multi_ledger_replication.py",
@@ -22,6 +23,7 @@ SOURCE_FILES = (
     REPO_ROOT / "tools" / "promote_evidence_release.py",
     REPO_ROOT / "tools" / "verify_tracked_evidence.py",
     REPO_ROOT / "tools" / "generate_release_summary.py",
+    MARKDOWN_CHECKER,
 )
 SCHEMA_DIR = REPO_ROOT / "schemas"
 TEXT_SUFFIXES = {".py", ".md", ".toml", ".cff", ".json", ".txt", ".yml", ".yaml"}
@@ -118,6 +120,9 @@ def main(argv: Sequence[str] | None = None) -> int:
 
     verify_attribution()
     print("PASS: public attribution")
+
+    run([sys.executable, str(MARKDOWN_CHECKER), "--root", str(REPO_ROOT)])
+    print("PASS: Markdown local links and anchors")
 
     if not args.skip_self_tests:
         for source in SOURCE_FILES:
