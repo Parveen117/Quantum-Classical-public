@@ -6,47 +6,49 @@ The repository must remain private until every **required** gate below is closed
 
 - [x] First release target is limited to the Multi-Ledger Operator-Memory Benchmark v1.
 - [x] Representation evidence is separated from physical device, material, thermodynamic, and universal-law claims.
-- [ ] `docs/CLAIM_SCOPE.md` maps every public claim to evidence, code, tests, limitations, and falsification conditions.
-- [ ] All language has been checked for accidental overclaiming.
+- [x] `docs/CLAIM_SCOPE.md` maps every public claim to evidence, code, tests, limitations, and falsification conditions.
+- [x] Current public-branch language has been checked for accidental overclaiming.
 
 ## 2. Source transport
 
-- [ ] Freeze the selected source commit from `Parveen117/quantum-classical-provisional`.
-- [ ] Copy only approved files listed in `TRANSFER_MANIFEST.md`.
-- [ ] Remove local filesystem paths and development-only comments.
-- [ ] Remove unrelated provisional experiments and incomplete imports.
-- [ ] Preserve source provenance and original file hashes.
-- [ ] Record any public-release modifications and their new hashes.
+- [x] Freeze the selected source commits from `Parveen117/quantum-classical-provisional`.
+- [x] Copy only approved files listed in `TRANSFER_MANIFEST.md`.
+- [x] Remove local filesystem paths and development-only comments from transported executables.
+- [x] Remove unrelated provisional experiments and incomplete imports from the first release scope.
+- [x] Preserve source provenance and original file blob hashes.
+- [x] Record public-release modifications and new Git/SHA-256 hashes.
 
 ## 3. Code and environment
 
-- [ ] Public benchmark runner passes `--self-test` in a clean environment.
-- [ ] Offline replication evaluator passes `--self-test` in a clean environment.
-- [ ] Python version is declared.
-- [ ] Dependencies are pinned or bounded and installation is tested.
-- [ ] A single non-credentialed command runs all public self-tests.
-- [ ] IBM execution instructions use environment variables and never expose tokens.
-- [ ] Failure paths return nonzero process codes and do not label runtime failures as scientific negatives.
+- [x] Public benchmark runner passes pure offline `--self-test` in a clean environment.
+- [x] Offline replication evaluator passes `--self-test` in a clean environment.
+- [x] Python version is declared.
+- [ ] Declared Qiskit dependency installation and full circuit construction pass in CI.
+- [x] A single non-credentialed command runs all public self-tests.
+- [x] IBM execution instructions use environment variables or SDK account discovery and never expose tokens.
+- [x] Failure paths return nonzero process codes and do not label runtime failures as scientific negatives.
 
 ## 4. Evidence
 
 - [ ] At least two selected passing hardware runs from distinct backends are reviewed.
 - [ ] Run identifiers are assessed for privacy and publication necessity.
 - [ ] Raw result files are immutable and SHA-256 hashed.
-- [ ] Each run includes `results.json`, `certificate.json`, `summary.md`, and `manifest.json`.
+- [ ] Each selected run includes `results.json`, `certificate.json`, `summary.md`, and `manifest.json`.
 - [ ] Cross-backend replication includes a certificate, summary, and manifest.
-- [ ] Duplicate job identifiers and duplicate raw-result hashes are rejected.
+- [x] Duplicate job identifiers and duplicate raw-result hashes are rejected by the evaluator.
 - [ ] Calibration and execution dates are stated where available.
-- [ ] Negative controls and reduced-model comparisons are included.
-- [ ] No evidence file contains credentials, account identifiers, local paths, or private notes.
+- [x] Negative controls and reduced-model comparisons are included in the benchmark design.
+- [ ] No selected evidence file contains credentials, account identifiers, local paths, or private notes.
 
 ## 5. Reproducibility
 
-- [ ] One command verifies every selected manifest and certificate offline.
-- [ ] One command reproduces summary tables from selected evidence.
-- [ ] Deterministic fixtures are included for CI self-tests.
-- [ ] Machine-generated outputs identify the software version and source commit.
-- [ ] Expected runtimes and hardware-access requirements are documented.
+- [x] One command verifies public source syntax, schemas, scans, and executable self-tests offline.
+- [ ] One command verifies every selected evidence manifest and certificate after evidence intake.
+- [ ] One command reproduces release summary tables from selected evidence.
+- [x] Deterministic positive and adversarial fixtures are included in evaluator self-tests.
+- [x] Machine-generated outputs identify the software version and private-source provenance.
+- [x] Hardware-access requirements and execution commands are documented.
+- [ ] Expected hardware runtimes and likely queue-dependent variability are documented from a release run.
 
 ## 6. Intellectual property and licensing
 
@@ -54,15 +56,16 @@ The repository must remain private until every **required** gate below is closed
 - [x] Controlled public-inspection licence exists.
 - [x] Public/private release boundary exists.
 - [ ] Final release contents are checked against active patent filings and unpublished claim strategy.
-- [ ] No fabrication, cryogenic-control, device-architecture, examiner-response, or unpublished laboratory material is included unintentionally.
+- [x] Current public branch contains no fabrication, cryogenic-control, examiner-response, or unpublished laboratory packet.
 
 ## 7. Repository hygiene
 
-- [x] Citation metadata scaffold exists.
-- [ ] `.gitignore` covers credentials, environments, notebooks, caches, generated runs, and local configuration.
-- [ ] Secret scan is clean.
-- [ ] Personal-information scan is clean.
-- [ ] Large-file and duplicate-file audit is clean.
+- [x] Citation metadata scaffold exists with Parveen attribution.
+- [x] `.gitignore` covers credentials, environments, notebooks, caches, generated runs, and local configuration.
+- [x] Local-path and hardcoded-secret scan passes on the locally reconstructed public tree.
+- [ ] CI secret/path scan passes on the GitHub branch.
+- [ ] Personal-information scan is clean for selected evidence.
+- [ ] Large-file and duplicate-file audit is clean after evidence intake.
 - [ ] Links and Markdown render correctly.
 - [ ] Repository description and topics match the bounded claim.
 
