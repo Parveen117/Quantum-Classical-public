@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/Parveen117/Quantum-Classical/schemas/run_certificate.schema.json",
+  "$id": "https://github.com/Parveen117/Quantum-Classical-public/schemas/run_certificate.schema.json",
   "title": "Multi-Ledger Operator-Memory Run Certificate",
   "type": "object",
   "required": ["schema", "benchmark_version", "created_at_utc", "backend", "job_id", "shots_per_circuit", "classification", "pass_gates", "primary_metrics", "scientific_boundary", "raw_results_sha256"],
