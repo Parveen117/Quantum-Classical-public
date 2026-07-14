@@ -23,7 +23,7 @@ The repository must remain private until every **required** gate below is closed
 - [x] Public benchmark runner passes pure offline `--self-test` in a clean environment.
 - [x] Offline replication evaluator passes `--self-test` in a clean environment.
 - [x] Python version is declared.
-- [ ] Declared Qiskit dependency installation and full circuit construction pass in CI.
+- [x] Declared Qiskit dependency installation and full circuit construction pass in CI.
 - [x] A single non-credentialed command runs all public self-tests.
 - [x] IBM execution instructions use environment variables or SDK account discovery and never expose tokens.
 - [x] Failure paths return nonzero process codes and do not label runtime failures as scientific negatives.
@@ -63,7 +63,7 @@ The repository must remain private until every **required** gate below is closed
 - [x] Citation metadata scaffold exists with Parveen attribution.
 - [x] `.gitignore` covers credentials, environments, notebooks, caches, generated runs, and local configuration.
 - [x] Local-path and hardcoded-secret scan passes on the locally reconstructed public tree.
-- [ ] CI secret/path scan passes on the GitHub branch.
+- [x] CI secret/path scan passes on the GitHub branch.
 - [ ] Personal-information scan is clean for selected evidence.
 - [ ] Large-file and duplicate-file audit is clean after evidence intake.
 - [ ] Links and Markdown render correctly.
