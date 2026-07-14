@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use or discuss this software or evidence, cite the exact release tag or commit."
+title: "Quantum-Classical Recognition Validation: Multi-Ledger Operator-Memory Benchmark"
+type: software
+version: "0.1.0-rc1"
+authors:
+  - family-names: "Dabas"
+    given-names: "Monty"
+    orcid: "https://orcid.org/0009-0005-6948-209X"
+    affiliation: "Independent Researcher"
+abstract: >-
+  A bounded public research package for testing a quantum representation of
+  decomposable operator-order memory using separate ledgers, selective erasure,
+  declared readout projection, reduced-model comparisons, hardware observations,
+  cross-run evaluation, manifests, and machine-readable certificates. The
+  package does not claim physical device validation, a material memory mechanism,
+  quantum advantage, thermodynamic proof, or a new universal law.
+keywords:
+  - quantum-classical validation
+  - operator order
+  - quantum memory representation
+  - selective erasure
+  - IBM Quantum
+  - reproducible research
+  - research certificates
+  - evidence manifests
+repository-code: "https://github.com/Parveen117/Quantum-Classical"
+url: "https://github.com/Parveen117/Quantum-Classical"
