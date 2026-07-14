@@ -41,6 +41,10 @@ INCORRECT_PUBLICATION_IDENTITIES = (
     "Parveen Dabas",
     "Kajal Dabas",
 )
+PRIVATE_FIRST_NAMES_FOR_LICENSE = (
+    "Parveen",
+    "Kajal",
+)
 
 
 def run(command: Sequence[str]) -> None:
@@ -109,6 +113,19 @@ def verify_attribution() -> None:
                 f"Monty Dabas publication attribution is missing from {path.relative_to(REPO_ROOT)}"
             )
 
+    license_path = REPO_ROOT / "LICENSE"
+    license_text = license_path.read_text(encoding="utf-8")
+    required_copyright = "Copyright © 2026 Monty Dabas. All rights reserved."
+    if required_copyright not in license_text:
+        raise RuntimeError(
+            "LICENSE must use the exact Monty Dabas publication-name copyright line"
+        )
+    for private_name in PRIVATE_FIRST_NAMES_FOR_LICENSE:
+        if re.search(rf"\b{re.escape(private_name)}\b", license_text, re.IGNORECASE):
+            raise RuntimeError(
+                f"LICENSE contains a private or incorrect personal name: {private_name!r}"
+            )
+
     citation_path = REPO_ROOT / "CITATION.cff"
     if not citation_path.is_file():
         raise RuntimeError("Required release file is missing: CITATION.cff")
@@ -161,7 +178,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     print("PASS: local-path and hardcoded-secret scan")
 
     verify_attribution()
-    print("PASS: Monty Dabas publication attribution")
+    print("PASS: Monty Dabas publication attribution and licence privacy")
 
     run([sys.executable, str(MARKDOWN_CHECKER), "--root", str(REPO_ROOT)])
     print("PASS: Markdown local links and anchors")
