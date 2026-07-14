@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/Parveen117/Quantum-Classical/schemas/run_manifest.schema.json",
+  "$id": "https://github.com/Parveen117/Quantum-Classical-public/schemas/run_manifest.schema.json",
   "title": "Multi-Ledger Operator-Memory Run Manifest",
   "type": "object",
   "additionalProperties": false,
