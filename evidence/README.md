@@ -1,6 +1,22 @@
 # Public Evidence Intake
 
-No hardware evidence has been approved for this public branch yet.
+No hardware evidence has been approved for the tracked public branch yet.
+
+The private campaign has now reported a passing three-backend `CROSS_BACKEND_REPLICATION` result. It is eligible for controlled local intake and publication audit, but not yet for commit or public visibility. Use [`docs/EVIDENCE_INTAKE.md`](../docs/EVIDENCE_INTAKE.md).
+
+## Local staging boundary
+
+The intake tool writes only to the git-ignored directory:
+
+```text
+intake_staging/
+  intake_audit.json
+  intake_audit.md
+  selected_runs/
+  replication/
+```
+
+Do not force-add this directory. It exists so hashes, identifiers, privacy, provenance, and patent boundaries can be reviewed before evidence enters Git history.
 
 ## Required selected-run bundle
 
