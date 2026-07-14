@@ -62,7 +62,7 @@ The repository must remain private until every **required** gate below is closed
 
 ## 7. Repository hygiene
 
-- [x] Citation metadata scaffold exists with Parveen attribution.
+- [x] Citation metadata and package metadata use the publication identity Monty Dabas with ORCID `0009-0005-6948-209X`.
 - [x] `.gitignore` covers credentials, environments, notebooks, caches, generated runs, and local configuration.
 - [x] Local-path and hardcoded-secret scan passes on the locally reconstructed public tree.
 - [x] CI secret/path scan passes on the GitHub branch.
