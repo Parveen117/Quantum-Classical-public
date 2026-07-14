@@ -50,7 +50,7 @@
         "compiles public Python sources",
         "checks schema structure",
         "scans for local paths and hardcoded secrets",
-        "checks Parveen public attribution",
+        "requires the Monty Dabas publication identity and rejects stale incorrect full-name attributions",
         "runs executable self-tests"
       ],
       "review_status": "CI_TESTED"
@@ -96,9 +96,9 @@
         "generates a public evidence release manifest and evidence index",
         "excludes the local intake audit and preserves final legal/IP review as an open gate"
       ],
-      "review_status": "AWAITING_CI_AND_LOCAL_PROMOTION"
+      "review_status": "CI_TESTED_AND_LOCAL_PROMOTION_PASSED"
     }
   ],
-  "evidence_status": "TRIPLE_CROSS_BACKEND_REPLICATION_PASSED_AND_STAGING_AUDIT_CLEAN_AWAITING_TRACKED_PROMOTION",
+  "evidence_status": "TRIPLE_CROSS_BACKEND_REPLICATION_PROMOTED_COMMITTED_AND_CLEAN_CHECKOUT_VERIFIED",
   "scientific_boundary": "This transport manifest records public-release code and evidence-handling provenance. It is not physical device validation, a material mechanism certificate, a quantum-advantage result, or a universal-law proof."
 }
