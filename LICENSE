@@ -1,0 +1,53 @@
+QUANTUM-CLASSICAL RECOGNITION VALIDATION CONTROLLED PUBLIC INSPECTION LICENSE
+Version 1.0, 2026
+
+Copyright © 2026 Monty Dabas. All rights reserved.
+
+1. PURPOSE
+
+This repository is made publicly visible for technical inspection, reproducibility review, scholarly discussion, and citation. It is not released under an open-source, source-available commercial, patent, or permissive software licence.
+
+2. PERMITTED USE
+
+You may:
+
+(a) view and inspect the repository materials;
+(b) download a copy for personal, non-commercial evaluation;
+(c) run the included demonstration and verification code for personal, non-commercial evaluation; and
+(d) cite the repository using the supplied citation metadata and the exact release tag or commit used.
+
+3. PROHIBITED USE
+
+Without prior written permission from the rights holder, you may not:
+
+(a) copy or redistribute substantial portions of the repository;
+(b) modify, adapt, translate, republish, or create derivative works;
+(c) use the repository or its outputs for commercial, production, consulting, training, hosted-service, competitive, device-development, or fabrication purposes;
+(d) sublicense, sell, rent, lease, or transfer rights in the repository;
+(e) incorporate the repository into another software, dataset, model, circuit, device, service, or product;
+(f) remove or alter authorship, copyright, patent, citation, provenance, evidence, or release-boundary notices; or
+(g) use the repository to practise any patented or patent-pending method, system, process, apparatus, circuit, architecture, interface, control method, readout method, or claim.
+
+4. PATENT RIGHTS
+
+No patent licence is granted. Publication, inspection, citation, demonstration execution, or access to the repository does not grant, imply, waive, exhaust, or dedicate any patent right.
+
+5. THIRD-PARTY SERVICES AND SOFTWARE
+
+The repository may interoperate with third-party software and services, including quantum-computing platforms. Their separate licences, terms, access rules, and usage charges remain applicable. This licence grants no right in third-party software, services, hardware, trademarks, or data.
+
+6. NO WARRANTY
+
+THE REPOSITORY IS PROVIDED "AS IS" FOR RESEARCH INSPECTION. TO THE MAXIMUM EXTENT PERMITTED BY LAW, THE RIGHTS HOLDER DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, ACCURACY, NON-INFRINGEMENT, SCIENTIFIC VALIDITY, HARDWARE AVAILABILITY, AND FITNESS FOR ENGINEERING, MEDICAL, SAFETY-CRITICAL, FINANCIAL, COMMERCIAL, OR PRODUCTION USE.
+
+7. LIMITATION OF LIABILITY
+
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, THE RIGHTS HOLDER SHALL NOT BE LIABLE FOR ANY CLAIM, LOSS, DAMAGE, COST, OR LIABILITY ARISING FROM ACCESS TO, USE OF, RELIANCE ON, OR INABILITY TO USE THE REPOSITORY, THIRD-PARTY SERVICES, HARDWARE EXECUTION, OR REPOSITORY OUTPUTS.
+
+8. SEPARATE PERMISSION
+
+Any use outside Section 2 requires a separate written licence or permission from the applicable rights holder.
+
+9. RESERVATION OF RIGHTS
+
+All rights not expressly granted in this licence are reserved.
