@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Parveen117/Quantum-Classical-public/schemas/run_certificate.schema.json",
+  "title": "Multi-Ledger Operator-Memory Run Certificate",
+  "type": "object",
+  "required": ["schema", "benchmark_version", "created_at_utc", "backend", "job_id", "shots_per_circuit", "classification", "pass_gates", "primary_metrics", "scientific_boundary", "raw_results_sha256"],
+  "properties": {
+    "schema": {"const": "MULTI_LEDGER_OPERATOR_MEMORY_CERTIFICATE_V1"},
+    "benchmark_version": {"type": "string", "minLength": 1},
+    "created_at_utc": {"type": "string", "format": "date-time"},
+    "backend": {"type": "string", "minLength": 1},
+    "job_id": {"type": "string", "minLength": 1},
+    "shots_per_circuit": {"type": "integer", "minimum": 1},
+    "classification": {"enum": ["MULTI_LEDGER_OPERATOR_MEMORY_DECOMPOSITION", "HIDDEN_MULTI_LEDGER_MEMORY_WITHOUT_RELIABLE_PROJECTION", "NO_REPRODUCIBLE_MULTI_LEDGER_MEMORY"]},
+    "pass_gates": {
+      "type": "object",
+      "required": ["hidden_memory", "selective_erase", "projection_causal", "reset_projection", "model_comparison", "visible_rk_kr_equality"],
+      "additionalProperties": {"type": "boolean"}
+    },
+    "primary_metrics": {"type": "object"},
+    "scientific_boundary": {"type": "string", "minLength": 20},
+    "raw_results_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+  }
+}

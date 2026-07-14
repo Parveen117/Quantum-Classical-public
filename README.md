@@ -14,7 +14,7 @@ The repository does **not** claim that one circuit proves a universal physical l
 
 ## First publication target
 
-The initial release candidate is the **Multi-Ledger Operator-Memory Benchmark v1**. Its public package is planned to contain:
+The initial release candidate is the **Multi-Ledger Operator-Memory Benchmark v1**. Its public package contains:
 
 - a seven-qubit IBM Quantum benchmark;
 - three separately measured operator-order memory ledgers;
@@ -23,7 +23,26 @@ The initial release candidate is the **Multi-Ledger Operator-Memory Benchmark v1
 - offline cross-run and cross-backend evaluation;
 - machine-readable certificates and SHA-256 manifests;
 - self-tests that do not require IBM credentials;
-- selected hardware evidence only after privacy, provenance, patent, and claim-scope review.
+- selected hardware evidence after privacy, provenance, and claim-scope review.
+
+## Current validation state
+
+The committed campaign has passed the declared three-backend release gate:
+
+```text
+classification = CROSS_BACKEND_REPLICATION
+run_count = 3
+passing_run_count = 3
+backend_count = 3
+backends = ibm_fez, ibm_kingston, ibm_marrakesh
+duplicate_job_ids = []
+duplicate_result_hashes = []
+cross_run_stability.pass = true
+```
+
+All six declared per-run gates passed on every backend. The tracked evidence passed manifest verification, exact hash checking, duplicate rejection, sensitive-content scanning, clean-checkout verification, deterministic release-summary generation, and a private public-like rehearsal.
+
+The repository remains private and the pull request remains draft. IBM job identifiers are approved for public provenance because they distinguish independent executions and are not authentication credentials. Final human legal/IP review remains required before public visibility.
 
 ## Scientific levels
 
@@ -41,11 +60,11 @@ A computational certificate or hardware run is evidence relative to its circuit,
 
 The strongest intended first-release statement is:
 
-> Under the declared circuit, controls, metrics, and thresholds, selected IBM Quantum hardware runs can be evaluated for a decomposable operator-order memory representation with selective ledger erasure, causal projection, reduced-model comparison, and cross-run stability.
+> Under the declared circuit, controls, metrics, and thresholds, selected IBM Quantum hardware runs support a reproducible cross-backend quantum representation of decomposable operator-order memory with selective ledger erasure, causal projection, reduced-model comparison, and cross-run stability.
 
 A passing result supports the declared **quantum representation**. It does not establish a transistor, material memory, thermodynamic entropy production, quantum computational advantage, or new physical law.
 
-## Planned repository structure
+## Repository structure
 
 ```text
 .
@@ -60,27 +79,31 @@ A passing result supports the declared **quantum representation**. It does not e
 │   ├── FRAMEWORK.md
 │   ├── CLAIM_SCOPE.md
 │   ├── MULTI_LEDGER_OPERATOR_MEMORY_TEST.md
-│   └── REPRODUCIBILITY_PLAN.md
+│   ├── REPRODUCIBILITY_PLAN.md
+│   ├── ENVIRONMENT.md
+│   ├── JUPYTER_TRIPLE_REPLICATION.md
+│   ├── EVIDENCE_INTAKE.md
+│   └── RELEASE_NOTES_RC1.md
 ├── src/
-├── tests/
+├── tools/
 ├── schemas/
 └── evidence/
-    ├── manifests/
-    ├── certificates/
-    └── selected_runs/
+    ├── provenance/
+    ├── selected_runs/
+    └── replication/
 ```
 
 ## Publication discipline
 
 Files are transported from the private development repository only after review. The public repository must not contain credentials, local filesystem paths, unpublished patent drafting, device fabrication details, private laboratory mappings, unrelated experiments, unverified outputs, or claims stronger than the included evidence.
 
-Every released evidence file must be referenced by a manifest, tied to a source commit, and accompanied by a stated scientific boundary.
+Every released evidence file must be referenced by a manifest, tied to a source record, and accompanied by a stated scientific boundary.
 
 ## Citation
 
-Citation metadata will be finalized in [`CITATION.cff`](CITATION.cff) at the first tagged release. Cite the exact release tag or commit used.
+Citation metadata is maintained in [`CITATION.cff`](CITATION.cff). Cite the exact release tag or commit used.
 
-## Author
+## Publication author
 
-Parveen Dabas, Independent Researcher  
+Monty Dabas, Independent Researcher  
 ORCID: 0009-0005-6948-209X

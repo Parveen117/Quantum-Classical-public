@@ -1,0 +1,8 @@
+{
+  "benchmark_version": "0.1.0-rc1",
+  "files": {
+    "replication_certificate.json": "895f13aa196dae2bd49860340a9f8a56354d74bf04ae8ab5acf3aad41d871a16",
+    "replication_summary.md": "af77ca62f7beafffaab51aae97eb70edd2d447c0904f3d582f3bd4575b901b19"
+  },
+  "schema": "MULTI_LEDGER_OPERATOR_MEMORY_REPLICATION_MANIFEST_V1"
+}

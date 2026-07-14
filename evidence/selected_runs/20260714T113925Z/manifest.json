@@ -1,0 +1,10 @@
+{
+  "backend": "ibm_kingston",
+  "files": {
+    "certificate.json": "eff12cb00b18c3c8eda59ac6a112404f76087f7acfe80da788d6e47e70024139",
+    "results.json": "9525a9ff1ef4e8dd118153d4583e59f090c0be76966f8ed63e9ba363a25ce6c3",
+    "summary.md": "38b8f116bef5120c0a520c525e1dd0f9ef0c4613d658abe7b60836e6ce564711"
+  },
+  "job_id": "d9b1vvm6hjac73ff43gg",
+  "schema": "MULTI_LEDGER_OPERATOR_MEMORY_MANIFEST_V1"
+}

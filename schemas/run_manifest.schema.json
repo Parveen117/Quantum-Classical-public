@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Parveen117/Quantum-Classical-public/schemas/run_manifest.schema.json",
+  "title": "Multi-Ledger Operator-Memory Run Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "benchmark_version", "backend", "job_id", "files"],
+  "properties": {
+    "schema": {"const": "MULTI_LEDGER_OPERATOR_MEMORY_MANIFEST_V1"},
+    "benchmark_version": {"type": "string", "minLength": 1},
+    "backend": {"type": "string", "minLength": 1},
+    "job_id": {"type": "string", "minLength": 1},
+    "files": {
+      "type": "object",
+      "minProperties": 3,
+      "propertyNames": {"pattern": "^[^/\\\\]+$"},
+      "additionalProperties": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+    }
+  }
+}

@@ -1,0 +1,44 @@
+name: Public release checks
+
+on:
+  push:
+    branches:
+      - main
+      - agent/public-release-foundation
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  offline-verification:
+    name: Offline verification (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.12", "3.14"]
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Run public release verifier
+        run: python tools/verify_release.py
+
+  qiskit-api-compatibility:
+    name: Qiskit 2.5 API compatibility
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install declared hardware dependencies
+        run: python -m pip install --upgrade pip "qiskit==2.5.0" "qiskit-ibm-runtime==0.47.0"
+      - name: Build all declared benchmark circuits
+        run: python src/run_multi_ledger_operator_memory_test.py --self-test

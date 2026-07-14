@@ -1,0 +1,104 @@
+{
+  "schema": "QUANTUM_CLASSICAL_PUBLIC_TRANSPORT_MANIFEST_V1",
+  "created_on": "2026-07-14",
+  "private_source_repository": "Parveen117/quantum-classical-provisional",
+  "public_destination_repository": "Parveen117/Quantum-Classical-public",
+  "public_branch": "agent/public-release-foundation",
+  "files": [
+    {
+      "private_source_path": "run_multi_ledger_operator_memory_test.py",
+      "private_source_commit": "fa873e508600f98516642e4a8800829c8497f2b4",
+      "private_source_blob_sha": "00b258eba3bbb0d951ed6ad0a83f7e3b8ec47bc7",
+      "public_destination_path": "src/run_multi_ledger_operator_memory_test.py",
+      "public_git_blob_sha": "06707067b037754617d7cf153fddcf7e1658f6cb",
+      "public_sha256": "9bddb8f76c0c9758442429767cb852ae349f1b654793537075f65b67f3adcc38",
+      "modifications": [
+        "removed local Windows and Jupyter paths",
+        "moved Qiskit imports behind the hardware execution boundary",
+        "added pure offline self-tests",
+        "added CLI arguments and environment-variable fallbacks",
+        "added portable output paths and software-version provenance",
+        "preserved benchmark modes, operator construction, controls, metrics, certificates, and manifests"
+      ],
+      "review_status": "SANITISED_AND_OFFLINE_TESTED"
+    },
+    {
+      "private_source_path": "evaluate_multi_ledger_replication.py",
+      "private_source_commit": "a1cc5645c9bb29223ba9f2981176b322982b9903",
+      "private_source_blob_sha": "04da6998c465a27583043d14cde481bbb3bdc497",
+      "public_destination_path": "src/evaluate_multi_ledger_replication.py",
+      "public_git_blob_sha": "2042ed3cb9c68e822d9f3bdce9f169d8dd15ba74",
+      "public_sha256": "dae7e181bcc137a7b66ba1ee3d0fa548d36c436e58f790520939dab332bc7383",
+      "modifications": [
+        "removed local Windows and Jupyter paths",
+        "made output paths repository-relative",
+        "removed absolute run directories from public certificates",
+        "added manifest path-traversal rejection",
+        "added direct raw-result hash verification",
+        "added corrupt-hash and unsafe-path adversarial self-tests",
+        "preserved fixed gates, duplicate rejection, stability evaluation, classifications, and hashed outputs"
+      ],
+      "review_status": "SANITISED_AND_OFFLINE_TESTED"
+    },
+    {
+      "private_source_path": null,
+      "private_source_commit": null,
+      "private_source_blob_sha": null,
+      "public_destination_path": "tools/verify_release.py",
+      "modifications": [
+        "new public-release verifier",
+        "compiles public Python sources",
+        "checks schema structure",
+        "scans for local paths and hardcoded secrets",
+        "requires the Monty Dabas publication identity and rejects stale incorrect full-name attributions",
+        "runs executable self-tests"
+      ],
+      "review_status": "CI_TESTED"
+    },
+    {
+      "private_source_path": null,
+      "private_source_commit": null,
+      "private_source_blob_sha": null,
+      "public_destination_path": "src/run_replication_campaign_job.py",
+      "modifications": [
+        "new one-job-at-a-time campaign runner",
+        "accepts an external private evidence root",
+        "excludes previously used backends",
+        "submits exactly one IBM job per invocation",
+        "regenerates the replication certificate after each completed job",
+        "stops submitting after the target run count is reached"
+      ],
+      "review_status": "CI_TESTED_AND_HARDWARE_CAMPAIGN_COMPLETED"
+    },
+    {
+      "private_source_path": null,
+      "private_source_commit": null,
+      "private_source_blob_sha": null,
+      "public_destination_path": "tools/stage_evidence_intake.py",
+      "modifications": [
+        "re-verifies the three-run campaign",
+        "verifies every evidence manifest and SHA-256 hash",
+        "copies only approved evidence file categories into git-ignored staging",
+        "scans for credentials, account fields, personal information, and local paths",
+        "keeps the local intake audit out of tracked public evidence"
+      ],
+      "review_status": "CI_TESTED_AND_LOCAL_INTAKE_PASSED"
+    },
+    {
+      "private_source_path": null,
+      "private_source_commit": null,
+      "private_source_blob_sha": null,
+      "public_destination_path": "tools/promote_evidence_release.py",
+      "modifications": [
+        "requires explicit job-identifier and selected-file-boundary approvals",
+        "revalidates staged evidence and reevaluates the copied campaign",
+        "promotes only approved evidence files into tracked paths",
+        "generates a public evidence release manifest and evidence index",
+        "excludes the local intake audit and preserves final legal/IP review as an open gate"
+      ],
+      "review_status": "CI_TESTED_AND_LOCAL_PROMOTION_PASSED"
+    }
+  ],
+  "evidence_status": "TRIPLE_CROSS_BACKEND_REPLICATION_PROMOTED_COMMITTED_AND_CLEAN_CHECKOUT_VERIFIED",
+  "scientific_boundary": "This transport manifest records public-release code and evidence-handling provenance. It is not physical device validation, a material mechanism certificate, a quantum-advantage result, or a universal-law proof."
+}

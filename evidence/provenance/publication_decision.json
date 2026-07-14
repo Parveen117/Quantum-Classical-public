@@ -1,0 +1,50 @@
+{
+  "schema": "QUANTUM_CLASSICAL_EVIDENCE_PUBLICATION_DECISION_V1",
+  "release_candidate": "0.1.0-rc1",
+  "decision_date": "2026-07-14",
+  "campaign": {
+    "classification": "CROSS_BACKEND_REPLICATION",
+    "run_count": 3,
+    "passing_run_count": 3,
+    "backend_count": 3,
+    "backends": [
+      "ibm_fez",
+      "ibm_kingston",
+      "ibm_marrakesh"
+    ],
+    "duplicate_job_ids": [],
+    "duplicate_result_hashes": [],
+    "cross_run_stability": true,
+    "content_scan": true
+  },
+  "decisions": {
+    "ibm_job_identifiers": {
+      "status": "APPROVED_FOR_PUBLIC_PROVENANCE",
+      "rationale": "The identifiers distinguish three independent IBM Runtime executions and are not authentication credentials. They are included only in evidence certificates, summaries, and provenance records."
+    },
+    "selected_file_boundary": {
+      "status": "TECHNICAL_REVIEW_APPROVED",
+      "allowed_files_per_run": [
+        "results.json",
+        "certificate.json",
+        "summary.md",
+        "manifest.json"
+      ],
+      "allowed_replication_files": [
+        "replication_certificate.json",
+        "replication_summary.md",
+        "replication_manifest.json"
+      ],
+      "rationale": "The release is limited to the declared benchmark evidence and excludes fabrication packets, device implementation details, claim strategy, examiner material, credentials, local paths, account identifiers, and unrelated experiments."
+    },
+    "local_intake_audit": {
+      "status": "EXCLUDED_FROM_GIT_HISTORY",
+      "rationale": "The audit contains a local workstation staging path and is not part of the public scientific evidence."
+    },
+    "legal_ip_review": {
+      "status": "PENDING_BEFORE_PUBLIC_VISIBILITY",
+      "rationale": "Technical file review is not a legal opinion. Final legal and active-filing review remains required before changing repository visibility."
+    }
+  },
+  "scientific_boundary": "The selected evidence supports audit of a declared cross-backend quantum operator-order memory representation. It does not establish a fabricated device, material memory mechanism, thermodynamic proof, quantum advantage, fault tolerance, or a universal physical law."
+}

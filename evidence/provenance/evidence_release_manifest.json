@@ -1,0 +1,106 @@
+{
+  "backend_count": 3,
+  "backends": [
+    "ibm_fez",
+    "ibm_kingston",
+    "ibm_marrakesh"
+  ],
+  "classification": "CROSS_BACKEND_REPLICATION",
+  "cross_run_stability": {
+    "gates": {
+      "control_ceiling_stable": true,
+      "full_model_error_controlled": true,
+      "full_readout_stable": true,
+      "projection_erased_stable": true,
+      "reset_signature_resolved": true,
+      "visible_orders_matched": true
+    },
+    "pass": true,
+    "statistics": {
+      "control_ledger_ceiling_mean": 0.009006076388888888,
+      "control_ledger_ceiling_range": 0.004394531249999999,
+      "full_readout_mean": 0.9746907552083334,
+      "full_readout_range": 0.015869140625,
+      "maximum_full_multi_ledger_mae": 0.02916856582482192,
+      "maximum_visible_rk_kr_tvd": 0.012044270833333325,
+      "minimum_reset_signature_spread": 0.04280598958333326,
+      "projection_erased_readout_mean": 0.0015462239583333335,
+      "projection_erased_readout_range": 0.0011393229166666665
+    }
+  },
+  "duplicate_job_ids": [],
+  "duplicate_result_hashes": [],
+  "files": {
+    "evidence/replication/20260714T165820Z/replication_certificate.json": "895f13aa196dae2bd49860340a9f8a56354d74bf04ae8ab5acf3aad41d871a16",
+    "evidence/replication/20260714T165820Z/replication_manifest.json": "e1e769709ad6bbed646f933bc52e7dfa158f26998a808a7460c2f4c03c95a6c5",
+    "evidence/replication/20260714T165820Z/replication_summary.md": "af77ca62f7beafffaab51aae97eb70edd2d447c0904f3d582f3bd4575b901b19",
+    "evidence/selected_runs/20260714T113925Z/certificate.json": "eff12cb00b18c3c8eda59ac6a112404f76087f7acfe80da788d6e47e70024139",
+    "evidence/selected_runs/20260714T113925Z/manifest.json": "370f66920770049e0dcd30a0e0e7bb7d56ddfa880471b6b0f7446c9a782885a9",
+    "evidence/selected_runs/20260714T113925Z/results.json": "9525a9ff1ef4e8dd118153d4583e59f090c0be76966f8ed63e9ba363a25ce6c3",
+    "evidence/selected_runs/20260714T113925Z/summary.md": "38b8f116bef5120c0a520c525e1dd0f9ef0c4613d658abe7b60836e6ce564711",
+    "evidence/selected_runs/20260714T114146Z/certificate.json": "9690ae35c2f88e83b89ecdcd9ff8396d513d495ef90959021971c9e1d1464660",
+    "evidence/selected_runs/20260714T114146Z/manifest.json": "bfa3caf3e7b9af03fa58e21141a0b9f972a819432f2624fb28c5436dc2e90f75",
+    "evidence/selected_runs/20260714T114146Z/results.json": "2940f2ce0a24a4bfb14a3a7042b4cfaad460ee13df22ae8a17db9d6f55e80b0a",
+    "evidence/selected_runs/20260714T114146Z/summary.md": "a3ac3bd3df27e0f0dbeba07ca8c61a3b5ae22ed6070c838695dc78447e45ba70",
+    "evidence/selected_runs/20260714T120705Z/certificate.json": "951050f943c2349c871e8ed0d87075417b0a1b64320644ace844d7dde94c246c",
+    "evidence/selected_runs/20260714T120705Z/manifest.json": "5382edc91789aebf8fc634418d56496400a59de7948f40f9acb435faaae57327",
+    "evidence/selected_runs/20260714T120705Z/results.json": "9038b059703c5d460369c805ff7d108677afb82129e6761074e0260bd96e17e7",
+    "evidence/selected_runs/20260714T120705Z/summary.md": "3862ad512d7b9a0481f35b77f08a5bbdc8224b0e9a8d3def379ae10f3463d302"
+  },
+  "passing_run_count": 3,
+  "private_authoritative_archive": "Parveen117/quantum-classical-provisional",
+  "public_repository": "Parveen117/Quantum-Classical-public",
+  "publication_decisions": {
+    "job_identifiers": {
+      "rationale": "IBM job identifiers distinguish independent executions and are not authentication credentials. Their inclusion is limited to evidence provenance.",
+      "status": "APPROVED_FOR_PUBLIC_PROVENANCE"
+    },
+    "legal_ip_review": {
+      "rationale": "This automated technical review is not a legal opinion and does not replace final IP counsel review.",
+      "status": "PENDING_BEFORE_PUBLIC_VISIBILITY"
+    },
+    "local_intake_audit": {
+      "rationale": "The local audit can contain a workstation staging path.",
+      "status": "EXCLUDED_FROM_GIT_HISTORY"
+    },
+    "selected_file_boundary": {
+      "rationale": "Promotion is limited to benchmark results, certificates, summaries, and manifests. No fabrication packet, device implementation, claim strategy, or examiner material is included.",
+      "status": "TECHNICAL_REVIEW_APPROVED"
+    }
+  },
+  "release_candidate": "0.1.0-rc1",
+  "replication": {
+    "files": {
+      "replication_certificate.json": "895f13aa196dae2bd49860340a9f8a56354d74bf04ae8ab5acf3aad41d871a16",
+      "replication_manifest.json": "e1e769709ad6bbed646f933bc52e7dfa158f26998a808a7460c2f4c03c95a6c5",
+      "replication_summary.md": "af77ca62f7beafffaab51aae97eb70edd2d447c0904f3d582f3bd4575b901b19"
+    },
+    "public_replication_id": "20260714T165820Z"
+  },
+  "run_count": 3,
+  "runs": [
+    {
+      "backend": "ibm_kingston",
+      "classification": "MULTI_LEDGER_OPERATOR_MEMORY_DECOMPOSITION",
+      "job_id": "d9b1vvm6hjac73ff43gg",
+      "public_run_id": "20260714T113925Z",
+      "raw_results_sha256": "9525a9ff1ef4e8dd118153d4583e59f090c0be76966f8ed63e9ba363a25ce6c3"
+    },
+    {
+      "backend": "ibm_fez",
+      "classification": "MULTI_LEDGER_OPERATOR_MEMORY_DECOMPOSITION",
+      "job_id": "d9b212u6hjac73ff44j0",
+      "public_run_id": "20260714T114146Z",
+      "raw_results_sha256": "2940f2ce0a24a4bfb14a3a7042b4cfaad460ee13df22ae8a17db9d6f55e80b0a"
+    },
+    {
+      "backend": "ibm_marrakesh",
+      "classification": "MULTI_LEDGER_OPERATOR_MEMORY_DECOMPOSITION",
+      "job_id": "d9b2ct6g26ic73dfd8s0",
+      "public_run_id": "20260714T120705Z",
+      "raw_results_sha256": "9038b059703c5d460369c805ff7d108677afb82129e6761074e0260bd96e17e7"
+    }
+  ],
+  "schema": "QUANTUM_CLASSICAL_PUBLIC_EVIDENCE_RELEASE_MANIFEST_V1",
+  "scientific_boundary": "The staged files support audit of a declared cross-backend quantum operator-order memory representation. They do not establish a fabricated device, material memory mechanism, thermodynamic proof, quantum advantage, fault tolerance, or a universal physical law."
+}

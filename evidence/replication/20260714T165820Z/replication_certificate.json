@@ -1,0 +1,253 @@
+{
+  "backend_count": 3,
+  "backends": [
+    "ibm_fez",
+    "ibm_kingston",
+    "ibm_marrakesh"
+  ],
+  "benchmark_version": "0.1.0-rc1",
+  "classification": "CROSS_BACKEND_REPLICATION",
+  "created_at_utc": "2026-07-14T16:58:20.206683+00:00",
+  "cross_run_limits": {
+    "maximum_control_ledger_ceiling_range": 0.05,
+    "maximum_full_multi_ledger_mae": 0.08,
+    "maximum_full_readout_range": 0.08,
+    "maximum_projection_erased_readout_range": 0.05,
+    "maximum_visible_rk_kr_tvd": 0.03,
+    "minimum_reset_signature_spread": 0.03
+  },
+  "cross_run_stability": {
+    "gates": {
+      "control_ceiling_stable": true,
+      "full_model_error_controlled": true,
+      "full_readout_stable": true,
+      "projection_erased_stable": true,
+      "reset_signature_resolved": true,
+      "visible_orders_matched": true
+    },
+    "pass": true,
+    "statistics": {
+      "control_ledger_ceiling_mean": 0.009006076388888888,
+      "control_ledger_ceiling_range": 0.004394531249999999,
+      "full_readout_mean": 0.9746907552083334,
+      "full_readout_range": 0.015869140625,
+      "maximum_full_multi_ledger_mae": 0.02916856582482192,
+      "maximum_visible_rk_kr_tvd": 0.012044270833333325,
+      "minimum_reset_signature_spread": 0.04280598958333326,
+      "projection_erased_readout_mean": 0.0015462239583333335,
+      "projection_erased_readout_range": 0.0011393229166666665
+    }
+  },
+  "duplicate_job_ids": [],
+  "duplicate_result_hashes": [],
+  "job_ids": [
+    "d9b1vvm6hjac73ff43gg",
+    "d9b212u6hjac73ff44j0",
+    "d9b2ct6g26ic73dfd8s0"
+  ],
+  "passing_run_count": 3,
+  "per_run_limits": {
+    "maximum_control_ledger_ceiling": 0.05,
+    "maximum_full_multi_ledger_mae": 0.08,
+    "maximum_projection_erased_readout_p1": 0.05,
+    "maximum_visible_rk_kr_tvd": 0.03,
+    "minimum_full_ledger_p1": 0.9,
+    "minimum_full_readout_p1": 0.9,
+    "minimum_reset_signature_spread": 0.03
+  },
+  "run_count": 3,
+  "runs": [
+    {
+      "backend": "ibm_kingston",
+      "certificate_class_pass": true,
+      "certificate_sha256": "eff12cb00b18c3c8eda59ac6a112404f76087f7acfe80da788d6e47e70024139",
+      "classification": "MULTI_LEDGER_OPERATOR_MEMORY_DECOMPOSITION",
+      "declared_gates_pass": true,
+      "declared_pass_gates": {
+        "hidden_memory": true,
+        "model_comparison": true,
+        "projection_causal": true,
+        "reset_projection": true,
+        "selective_erase": true,
+        "visible_rk_kr_equality": true
+      },
+      "errors": [],
+      "job_id": "d9b1vvm6hjac73ff43gg",
+      "manifest_valid": true,
+      "metric_gates": {
+        "control_below_ceiling": true,
+        "full_ledgers_above_floor": true,
+        "full_model_error_below_ceiling": true,
+        "full_model_outperforms_reduced_models": true,
+        "full_readout_above_floor": true,
+        "projection_erased_below_ceiling": true,
+        "reset_signature_resolved": true,
+        "visible_orders_matched": true
+      },
+      "metric_gates_pass": true,
+      "metrics": {
+        "control_ledger_ceiling": 0.007486979166666667,
+        "full_ledger_p1": [
+          0.9893391927083334,
+          0.98681640625,
+          0.9931640625
+        ],
+        "full_multi_ledger_mae": 0.024437456427258215,
+        "full_readout_p1": 0.96533203125,
+        "minimum_full_ledger_p1": 0.98681640625,
+        "model_mae": {
+          "full_multi_ledger": 0.024437456427258215,
+          "no_memory": 0.4049886067708333,
+          "pair_m12": 0.17319620963736804,
+          "pair_m13": 0.15952532031526812,
+          "pair_m23": 0.14324035177478622,
+          "single_m1": 0.3226211360039326,
+          "single_m2": 0.30472208658854166,
+          "single_m3": 0.2864375930593322
+        },
+        "projection_erased_readout_p1": 0.001953125,
+        "reset_readout_values": [
+          0.7526041666666666,
+          0.7161458333333334,
+          0.7097981770833334
+        ],
+        "reset_signature_spread": 0.04280598958333326,
+        "visible_rk_kr_tvd": 0.012044270833333325
+      },
+      "raw_results_sha256": "9525a9ff1ef4e8dd118153d4583e59f090c0be76966f8ed63e9ba363a25ce6c3",
+      "run_name": "20260714T113925Z",
+      "valid": true
+    },
+    {
+      "backend": "ibm_fez",
+      "certificate_class_pass": true,
+      "certificate_sha256": "9690ae35c2f88e83b89ecdcd9ff8396d513d495ef90959021971c9e1d1464660",
+      "classification": "MULTI_LEDGER_OPERATOR_MEMORY_DECOMPOSITION",
+      "declared_gates_pass": true,
+      "declared_pass_gates": {
+        "hidden_memory": true,
+        "model_comparison": true,
+        "projection_causal": true,
+        "reset_projection": true,
+        "selective_erase": true,
+        "visible_rk_kr_equality": true
+      },
+      "errors": [],
+      "job_id": "d9b212u6hjac73ff44j0",
+      "manifest_valid": true,
+      "metric_gates": {
+        "control_below_ceiling": true,
+        "full_ledgers_above_floor": true,
+        "full_model_error_below_ceiling": true,
+        "full_model_outperforms_reduced_models": true,
+        "full_readout_above_floor": true,
+        "projection_erased_below_ceiling": true,
+        "reset_signature_resolved": true,
+        "visible_orders_matched": true
+      },
+      "metric_gates_pass": true,
+      "metrics": {
+        "control_ledger_ceiling": 0.011881510416666666,
+        "full_ledger_p1": [
+          0.9811197916666666,
+          0.9761555989583334,
+          0.9912109375
+        ],
+        "full_multi_ledger_mae": 0.02916856582482192,
+        "full_readout_p1": 0.9775390625,
+        "minimum_full_ledger_p1": 0.9761555989583334,
+        "model_mae": {
+          "full_multi_ledger": 0.02916856582482192,
+          "no_memory": 0.4201904296875,
+          "pair_m12": 0.1868405514877385,
+          "pair_m13": 0.17103133063237644,
+          "pair_m23": 0.1519590265278853,
+          "single_m1": 0.33693901860467373,
+          "single_m2": 0.3201578776041667,
+          "single_m3": 0.3011804870753457
+        },
+        "projection_erased_readout_p1": 0.0018717447916666667,
+        "reset_readout_values": [
+          0.7788899739583334,
+          0.7251790364583334,
+          0.6991373697916666
+        ],
+        "reset_signature_spread": 0.07975260416666674,
+        "visible_rk_kr_tvd": 0.006266276041666667
+      },
+      "raw_results_sha256": "2940f2ce0a24a4bfb14a3a7042b4cfaad460ee13df22ae8a17db9d6f55e80b0a",
+      "run_name": "20260714T114146Z",
+      "valid": true
+    },
+    {
+      "backend": "ibm_marrakesh",
+      "certificate_class_pass": true,
+      "certificate_sha256": "951050f943c2349c871e8ed0d87075417b0a1b64320644ace844d7dde94c246c",
+      "classification": "MULTI_LEDGER_OPERATOR_MEMORY_DECOMPOSITION",
+      "declared_gates_pass": true,
+      "declared_pass_gates": {
+        "hidden_memory": true,
+        "model_comparison": true,
+        "projection_causal": true,
+        "reset_projection": true,
+        "selective_erase": true,
+        "visible_rk_kr_equality": true
+      },
+      "errors": [],
+      "job_id": "d9b2ct6g26ic73dfd8s0",
+      "manifest_valid": true,
+      "metric_gates": {
+        "control_below_ceiling": true,
+        "full_ledgers_above_floor": true,
+        "full_model_error_below_ceiling": true,
+        "full_model_outperforms_reduced_models": true,
+        "full_readout_above_floor": true,
+        "projection_erased_below_ceiling": true,
+        "reset_signature_resolved": true,
+        "visible_orders_matched": true
+      },
+      "metric_gates_pass": true,
+      "metrics": {
+        "control_ledger_ceiling": 0.007649739583333333,
+        "full_ledger_p1": [
+          0.992431640625,
+          0.965087890625,
+          0.9939778645833334
+        ],
+        "full_multi_ledger_mae": 0.01601464228511586,
+        "full_readout_p1": 0.981201171875,
+        "minimum_full_ledger_p1": 0.965087890625,
+        "model_mae": {
+          "full_multi_ledger": 0.01601464228511586,
+          "no_memory": 0.40077311197916665,
+          "pair_m12": 0.168746418517188,
+          "pair_m13": 0.15589766904836858,
+          "pair_m23": 0.14139112751830762,
+          "single_m1": 0.3175015732231125,
+          "single_m2": 0.3006632486979167,
+          "single_m3": 0.28416527251906726
+        },
+        "projection_erased_readout_p1": 0.0008138020833333334,
+        "reset_readout_values": [
+          0.7630208333333334,
+          0.7167154947916666,
+          0.704345703125
+        ],
+        "reset_signature_spread": 0.05867513020833337,
+        "visible_rk_kr_tvd": 0.01131184895833332
+      },
+      "raw_results_sha256": "9038b059703c5d460369c805ff7d108677afb82129e6761074e0260bd96e17e7",
+      "run_name": "20260714T120705Z",
+      "valid": true
+    }
+  ],
+  "runs_root": "runs",
+  "schema": "MULTI_LEDGER_OPERATOR_MEMORY_REPLICATION_CERTIFICATE_V1",
+  "scientific_boundary": "This certificate evaluates replication of a declared quantum operator-order memory representation. It does not establish a fabricated device, material memory, thermodynamic entropy production, quantum advantage, or a new physical law.",
+  "source_provenance": {
+    "private_blob_sha": "04da6998c465a27583043d14cde481bbb3bdc497",
+    "private_commit": "a1cc5645c9bb29223ba9f2981176b322982b9903",
+    "private_repository": "Parveen117/quantum-classical-provisional",
+    "public_evaluator_sha256": "4b539249473a91c579dfbeed08f71b56d9b0444209d1db766ce0fccc7c5b72b3"
+  }
+}
