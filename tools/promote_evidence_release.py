@@ -2,9 +2,12 @@
 """Promote audited evidence from local intake staging into tracked release paths.
 
 The command requires explicit approval for publishing IBM job identifiers and
-for the patent boundary. It re-verifies the intake audit, manifests, hashes,
-sensitive-content scan, and campaign classification. The local intake audit is
-never copied because it can contain a workstation path.
+for the selected technical file boundary. It re-verifies the intake audit,
+manifests, hashes, sensitive-content scan, and campaign classification. The
+local intake audit is never copied because it can contain a workstation path.
+
+This is a technical release-control tool, not a legal patent opinion. Final
+legal/IP review remains required before repository visibility is changed.
 
 This tool changes files in the local checkout but does not run git add, commit,
 push, merge, tag, or change repository visibility.
@@ -175,11 +178,17 @@ def build_release_manifest(
                     "authentication credentials. Their inclusion is limited to evidence provenance."
                 ),
             },
-            "patent_boundary": {
-                "status": "APPROVED_FOR_SELECTED_EVIDENCE_ONLY",
+            "selected_file_boundary": {
+                "status": "TECHNICAL_REVIEW_APPROVED",
                 "rationale": (
                     "Promotion is limited to benchmark results, certificates, summaries, and manifests. "
                     "No fabrication packet, device implementation, claim strategy, or examiner material is included."
+                ),
+            },
+            "legal_ip_review": {
+                "status": "PENDING_BEFORE_PUBLIC_VISIBILITY",
+                "rationale": (
+                    "This automated technical review is not a legal opinion and does not replace final IP counsel review."
                 ),
             },
             "local_intake_audit": {
@@ -203,6 +212,7 @@ def write_evidence_index(evidence_root: Path, release_manifest: Mapping[str, Any
         f"- Cross-run stability: `{release_manifest['cross_run_stability']['pass']}`",
         "- Duplicate job identifiers: `none`",
         "- Duplicate raw-result hashes: `none`",
+        "- Final legal/IP review: `pending before public visibility`",
         "",
         "## Runs",
         "",
@@ -222,6 +232,7 @@ def write_evidence_index(evidence_root: Path, release_manifest: Mapping[str, Any
         str(release_manifest["scientific_boundary"]),
         "",
         "The private provisional repository remains the authoritative archive for unselected development evidence.",
+        "This technical evidence release does not replace final legal/IP review before public visibility.",
     ])
     (evidence_root / "EVIDENCE_INDEX.md").write_text(
         "\n".join(lines) + "\n", encoding="utf-8"
@@ -235,12 +246,14 @@ def promote(
     expected_runs: int,
     replace: bool,
     approve_job_identifiers: bool,
-    approve_patent_boundary: bool,
+    approve_selected_file_boundary: bool,
 ) -> dict[str, Any]:
     if not approve_job_identifiers:
         raise RuntimeError("Pass --approve-job-identifiers after explicit publication review")
-    if not approve_patent_boundary:
-        raise RuntimeError("Pass --approve-patent-boundary after explicit selected-file review")
+    if not approve_selected_file_boundary:
+        raise RuntimeError(
+            "Pass --approve-selected-file-boundary after reviewing the exact staged file categories"
+        )
 
     audit_path = staging_root / "intake_audit.json"
     if not audit_path.is_file():
@@ -338,7 +351,8 @@ def promote(
         "backends": release_manifest["backends"],
         "cross_run_stability": release_manifest["cross_run_stability"]["pass"],
         "job_identifier_publication": "APPROVED_FOR_PUBLIC_PROVENANCE",
-        "patent_boundary": "APPROVED_FOR_SELECTED_EVIDENCE_ONLY",
+        "selected_file_boundary": "TECHNICAL_REVIEW_APPROVED",
+        "legal_ip_review": "PENDING_BEFORE_PUBLIC_VISIBILITY",
         "local_intake_audit_committed": False,
         "tracked_file_count": len(release_manifest["files"]) + 2,
     }
@@ -371,16 +385,18 @@ def self_test() -> None:
             expected_runs=3,
             replace=False,
             approve_job_identifiers=True,
-            approve_patent_boundary=True,
+            approve_selected_file_boundary=True,
         )
         assert result["classification"] == PASS_CLASSIFICATION
         assert result["local_intake_audit_committed"] is False
+        assert result["legal_ip_review"] == "PENDING_BEFORE_PUBLIC_VISIBILITY"
         assert (evidence / "selected_runs" / "run1" / "results.json").is_file()
         assert (evidence / "provenance" / "evidence_release_manifest.json").is_file()
         assert not (evidence / "intake_audit.json").exists()
     print(
         "Self-test passed: explicit approvals, intake revalidation, exact promotion, "
-        "campaign reevaluation, public manifest generation, and local-audit exclusion are enforced."
+        "campaign reevaluation, public manifest generation, local-audit exclusion, "
+        "and separation of technical review from legal/IP review are enforced."
     )
 
 
@@ -391,7 +407,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--evidence-root", type=Path, default=DEFAULT_EVIDENCE_ROOT)
     parser.add_argument("--expected-runs", type=int, default=3)
     parser.add_argument("--approve-job-identifiers", action="store_true")
-    parser.add_argument("--approve-patent-boundary", action="store_true")
+    parser.add_argument("--approve-selected-file-boundary", action="store_true")
     parser.add_argument("--replace", action="store_true")
     return parser
 
@@ -407,7 +423,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         expected_runs=args.expected_runs,
         replace=args.replace,
         approve_job_identifiers=args.approve_job_identifiers,
-        approve_patent_boundary=args.approve_patent_boundary,
+        approve_selected_file_boundary=args.approve_selected_file_boundary,
     )
     print(json.dumps(result, indent=2, sort_keys=True))
     print("\nEvidence promoted into tracked paths. Review git diff before committing.")
