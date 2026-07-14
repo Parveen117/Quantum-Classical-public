@@ -25,6 +25,24 @@ The initial release candidate is the **Multi-Ledger Operator-Memory Benchmark v1
 - self-tests that do not require IBM credentials;
 - selected hardware evidence only after privacy, provenance, patent, and claim-scope review.
 
+## Current execution step
+
+The current open scientific gate is a three-run independent IBM campaign. Raw evidence remains in the private development repository while the sanitised release-candidate code submits one job at a time on previously unused backends.
+
+Use [`docs/JUPYTER_TRIPLE_REPLICATION.md`](docs/JUPYTER_TRIPLE_REPLICATION.md) for the exact notebook cells. The required final certificate is:
+
+```text
+classification = CROSS_BACKEND_REPLICATION
+run_count >= 3
+passing_run_count >= 3
+backend_count >= 3
+duplicate_job_ids = []
+duplicate_result_hashes = []
+cross_run_stability.pass = true
+```
+
+Environment and authentication boundaries are documented in [`docs/ENVIRONMENT.md`](docs/ENVIRONMENT.md).
+
 ## Scientific levels
 
 | Level | Meaning in this repository |
@@ -60,14 +78,16 @@ A passing result supports the declared **quantum representation**. It does not e
 │   ├── FRAMEWORK.md
 │   ├── CLAIM_SCOPE.md
 │   ├── MULTI_LEDGER_OPERATOR_MEMORY_TEST.md
-│   └── REPRODUCIBILITY_PLAN.md
+│   ├── REPRODUCIBILITY_PLAN.md
+│   ├── ENVIRONMENT.md
+│   └── JUPYTER_TRIPLE_REPLICATION.md
 ├── src/
-├── tests/
+├── tools/
 ├── schemas/
 └── evidence/
-    ├── manifests/
-    ├── certificates/
-    └── selected_runs/
+    ├── provenance/
+    ├── selected_runs/
+    └── replication/
 ```
 
 ## Publication discipline
