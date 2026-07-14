@@ -41,6 +41,7 @@ private_instance.json
 # Generated evidence and runtime output
 multi_ledger_operator_memory_v1/runs/
 multi_ledger_operator_memory_v1/replication/
+evidence/intake_staging/
 device_evidence_exports/
 outputs/
 logs/
