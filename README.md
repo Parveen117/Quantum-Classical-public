@@ -1,6 +1,6 @@
 # Quantum-Classical Recognition Validation
 
-> **Release status:** private publication-staging repository. This repository is not ready for public release until every gate in [`RELEASE_CHECKLIST.md`](RELEASE_CHECKLIST.md) is closed.
+> **Release status:** bounded public release. The declared three-backend release gate has passed (see Current validation state); the release gates tracked in [`RELEASE_CHECKLIST.md`](RELEASE_CHECKLIST.md) govern any future expansion of scope.
 >
 > **Patent and rights boundary:** this is a selected technical inspection and citation release. Public visibility will not grant a patent licence or unrestricted software rights. See [`PATENT_NOTICE.md`](PATENT_NOTICE.md), [`LICENSE`](LICENSE), and [`PUBLIC_RELEASE_BOUNDARY.md`](PUBLIC_RELEASE_BOUNDARY.md).
 
@@ -42,7 +42,7 @@ cross_run_stability.pass = true
 
 All six declared per-run gates passed on every backend. The tracked evidence passed manifest verification, exact hash checking, duplicate rejection, sensitive-content scanning, clean-checkout verification, deterministic release-summary generation, and a private public-like rehearsal.
 
-The repository remains private and the pull request remains draft. IBM job identifiers are approved for public provenance because they distinguish independent executions and are not authentication credentials. Final human legal/IP review remains required before public visibility.
+IBM job identifiers are published as provenance because they distinguish independent executions and are not authentication credentials. This is a selected technical inspection and citation release; scope beyond it remains governed by the patent notice and release boundary documents.
 
 ## Scientific levels
 
