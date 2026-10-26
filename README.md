@@ -1,5 +1,8 @@
 # Quantum-Classical Recognition Validation
 
+> **Research record:** [Dated snapshot, content hashes and archive links](RESEARCH_PROVENANCE.md) · [Canonical repository governance](GOVERNANCE.md). Cite the exact version used.
+
+
 > **Release status:** bounded public release. The declared three-backend release gate has passed (see Current validation state); the release gates tracked in [`RELEASE_CHECKLIST.md`](RELEASE_CHECKLIST.md) govern any future expansion of scope.
 >
 > **Patent and rights boundary:** this is a selected technical inspection and citation release. Public visibility will not grant a patent licence or unrestricted software rights. See [`PATENT_NOTICE.md`](PATENT_NOTICE.md), [`LICENSE`](LICENSE), and [`PUBLIC_RELEASE_BOUNDARY.md`](PUBLIC_RELEASE_BOUNDARY.md).
